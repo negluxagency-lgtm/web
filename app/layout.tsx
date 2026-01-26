@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Great_Vibes } from "next/font/google";
 import "./globals.css";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
+import Script from "next/script";
 
 // --- Configuración de Fuentes ---
 
@@ -100,6 +101,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${outfit.variable} ${greatVibes.variable} scroll-smooth`}>
+      <head>
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-JPTSPNH3EW"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-JPTSPNH3EW');
+          `}
+        </Script>
+      </head>
+
       <body className="font-sans antialiased bg-zinc-950 text-zinc-50 selection:bg-amber-500 selection:text-zinc-950 relative overflow-x-hidden">
 
         {/* Gestor de scroll suave */}
