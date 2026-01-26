@@ -18,13 +18,14 @@ export function Navbar() {
                     height={90}
                     className="w-12 h-12 md:w-16 md:h-16 object-contain"
                 />
-                <span className="text-lg md:text-xl font-bold text-white tracking-tight hidden sm:block">Nelux AI</span>
+                <span className="text-lg md:text-xl font-bold text-white tracking-tight">Nelux AI</span>
             </div>
 
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
                 {[
                     { name: "Servicios", href: "#servicios" },
+                    { name: "Blog", href: "/blog" },
                     { name: "Enfoque", href: "#enfoque" },
                     { name: "Beneficios", href: "#beneficios" },
                     { name: "Contacto", href: "#contacto" },
@@ -63,6 +64,7 @@ export function Navbar() {
                     <div className="flex flex-col gap-4">
                         {[
                             { name: "Servicios", href: "#servicios" },
+                            { name: "Blog", href: "/blog" },
                             { name: "Enfoque", href: "#enfoque" },
                             { name: "Beneficios", href: "#beneficios" },
                             { name: "Contacto", href: "#contacto" },

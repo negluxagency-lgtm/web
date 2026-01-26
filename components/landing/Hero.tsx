@@ -19,7 +19,7 @@ export function Hero() {
 
             <div className="relative z-10 flex flex-col gap-4 mt-10 md:mt-14 sm:flex-row">
                 <Link
-                    href="#contact"
+                    href="#contacto"
                     className="px-8 py-4 text-sm md:text-base font-bold text-zinc-950 bg-amber-500 rounded-full hover:bg-amber-400 transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)]"
                 >
                     Hablemos de tu Proyecto

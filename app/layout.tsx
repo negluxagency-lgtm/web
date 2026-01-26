@@ -18,9 +18,47 @@ const greatVibes = Great_Vibes({
 });
 
 export const metadata: Metadata = {
-  title: "Nelux AI | Ingeniería de Software",
-  description: "Desarrollo de Software a medida e Inteligencia Artificial.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://nelux.es'),
+  title: {
+    template: '%s | Nelux AI',
+    default: 'Nelux AI - Ingeniería de Software e Inteligencia Artificial'
+  },
+  description: 'Desarrollo de Software a medida e Inteligencia Artificial. Transformamos ideas en productos digitales premium con tecnología de vanguardia.',
+  keywords: ['desarrollo software', 'inteligencia artificial', 'nextjs', 'supabase', 'agencia digital', 'desarrollo web', 'aplicaciones móviles'],
+  authors: [{ name: 'Nelux AI', url: 'https://nelux.es' }],
+  creator: 'Nelux AI',
+  publisher: 'Nelux AI',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    }
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_ES',
+    siteName: 'Nelux AI',
+    title: 'Nelux AI - Ingeniería de Software e Inteligencia Artificial',
+    description: 'Desarrollo de Software a medida e Inteligencia Artificial. Transformamos ideas en productos digitales premium.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Nelux AI - Ingeniería de Software e Inteligencia Artificial',
+    description: 'Desarrollo de Software a medida e Inteligencia Artificial.',
+  },
+  verification: {
+    google: 'PENDIENTE_CONFIGURAR', // Añadir código de Google Search Console
+  },
+  alternates: {
+    canonical: 'https://nelux.es',
+  },
 };
+
 
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 

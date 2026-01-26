@@ -33,7 +33,7 @@ export function About() {
                 </p>
 
                 <a
-                    href="#contact"
+                    href="#contacto"
                     className="inline-block px-8 py-4 mt-8 md:mt-12 text-base font-bold text-zinc-950 bg-amber-500 rounded-full hover:bg-amber-400 transition-all shadow-[0_0_20px_rgba(245,158,11,0.4)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)]"
                 >
                     Hablemos de tu Proyecto
