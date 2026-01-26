@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nelux.es';
 
@@ -37,6 +37,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.3,
         },
     ];
+
+    // Verificar si las credenciales de Supabase están disponibles
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+    // Si no hay credenciales, retornar solo páginas estáticas (útil para builds de preview)
+    if (!supabaseUrl || !supabaseAnonKey) {
+        console.warn('⚠️ Sitemap: Supabase credentials missing. Returning static pages only.');
+        return staticPages;
+    }
+
+    // Crear cliente de Supabase solo si las credenciales existen
+    const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
     // Posts dinámicos desde Supabase
     const { data: posts, error } = await supabase

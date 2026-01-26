@@ -136,6 +136,12 @@ interface Post {
 **Solución:** Usar puerto alternativo (3001) o terminar proceso existente  
 **Aprendizaje:** Verificar procesos activos antes de iniciar nuevo servidor
 
+### [2026-01-26] - Netlify Build Failure (Supabase Credentials)
+**Anomalía:** Build falló con "Supabase environment variables are missing" en sitemap.ts  
+**Causa:** sitemap.ts importaba `supabase` client que lanza error si las env vars no existen  
+**Solución:** Implementar fallback graceful - crear cliente solo si credenciales existen, retornar páginas estáticas si no  
+**Aprendizaje:** En rutas que se ejecutan en build-time (sitemap, robots), SIEMPRE validar env vars antes de usarlas. Builds deben ser resilientes a credenciales faltantes.
+
 
 ## 🎯 OUTPUTS ESPERADOS
 
