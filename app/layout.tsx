@@ -91,12 +91,9 @@ export const metadata: Metadata = {
     google: 'PENDIENTE_CONFIGURAR', // <--- Pega aquí tu código cuando lo tengas
   },
 
-  // 8. Favicon e Iconos (Identidad Visual en Buscadores)
-  icons: {
-    icon: '/landing/Logo_nelux_v2.png',           // Favicon en pestaña del navegador
-    shortcut: '/landing/Logo_nelux_v2.png',       // Shortcut icon (legacy)
-    apple: '/landing/Logo_nelux_v2.png',          // Apple Touch Icon (iPhone/iPad)
-  },
+  // 8. Favicon e Iconos → Configurados mediante archivos en /app:
+  //    - icon.png (favicon general)
+  //    - apple-icon.png (iOS/iPadOS)
 };
 
 // --- Layout Principal (UI) ---
