@@ -24,11 +24,11 @@ export function Navbar() {
             {/* Desktop Navigation Links */}
             <div className="hidden md:flex items-center gap-8">
                 {[
-                    { name: "Servicios", href: "#servicios" },
+                    { name: "Servicios", href: "/#servicios" },
                     { name: "Blog", href: "/blog" },
-                    { name: "Enfoque", href: "#enfoque" },
-                    { name: "Beneficios", href: "#beneficios" },
-                    { name: "Contacto", href: "#contacto" },
+                    { name: "Enfoque", href: "/#enfoque" },
+                    { name: "Beneficios", href: "/#beneficios" },
+                    { name: "Contacto", href: "/#contacto" },
                 ].map((link) => (
                     <Link
                         key={link.name}
@@ -42,7 +42,7 @@ export function Navbar() {
 
             <div className="hidden md:block">
                 <Link
-                    href="#contacto"
+                    href="/#contacto"
                     className="px-6 py-2.5 text-xs font-bold text-zinc-950 bg-amber-500 rounded-full hover:bg-amber-400 transition-all duration-300 shadow-[0_0_15px_rgba(245,158,11,0.2)] hover:shadow-[0_0_25px_rgba(245,158,11,0.4)]"
                 >
                     EMPEZAR AHORA
@@ -63,11 +63,11 @@ export function Navbar() {
                 <div className="absolute top-full left-0 right-0 bg-zinc-950 border-b border-zinc-900/50 p-6 md:hidden flex flex-col gap-6 shadow-2xl animate-in slide-in-from-top-4 duration-200">
                     <div className="flex flex-col gap-4">
                         {[
-                            { name: "Servicios", href: "#servicios" },
+                            { name: "Servicios", href: "/#servicios" },
                             { name: "Blog", href: "/blog" },
-                            { name: "Enfoque", href: "#enfoque" },
-                            { name: "Beneficios", href: "#beneficios" },
-                            { name: "Contacto", href: "#contacto" },
+                            { name: "Enfoque", href: "/#enfoque" },
+                            { name: "Beneficios", href: "/#beneficios" },
+                            { name: "Contacto", href: "/#contacto" },
                         ].map((link) => (
                             <Link
                                 key={link.name}
@@ -80,7 +80,7 @@ export function Navbar() {
                         ))}
                     </div>
                     <Link
-                        href="#contacto"
+                        href="/#contacto"
                         className="w-full text-center px-6 py-3 text-sm font-bold text-zinc-950 bg-amber-500 rounded-full hover:bg-amber-400 transition-all duration-300"
                         onClick={() => setIsMenuOpen(false)}
                     >
