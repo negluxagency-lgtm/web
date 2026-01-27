@@ -3,6 +3,7 @@ import { Navbar } from "@/components/landing/Navbar";
 import { Footer } from "@/components/landing/Footer";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import remarkBreaks from "remark-breaks";
 import { Metadata } from "next";
 import Link from "next/link";
 
@@ -240,8 +241,43 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         )}
                     </header>
 
-                    <article className="prose prose-invert prose-lg max-w-none prose-headings:text-amber-500 prose-a:text-blue-400 hover:prose-a:text-blue-300">
-                        <ReactMarkdown>{post.content}</ReactMarkdown>
+                    <article className="
+                        prose prose-invert prose-lg 
+                        max-w-3xl mx-auto
+                        prose-p:text-zinc-300 prose-p:leading-8
+                        prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-amber-500 prose-headings:mt-12 prose-headings:mb-6
+                        prose-li:text-zinc-300
+                        prose-a:text-blue-400 hover:prose-a:text-blue-300 transition-colors
+                        prose-strong:text-white prose-strong:font-extrabold
+                    ">
+                        <ReactMarkdown
+                            remarkPlugins={[remarkBreaks]}
+                            components={{
+                                // Forzamos el estilo del H1 (por si acaso viene en el markdown)
+                                h1: ({ node, ...props }) => <h1 className="text-4xl font-extrabold text-white mt-10 mb-6" {...props} />,
+
+                                // Forzamos el estilo del H2 (Los "##" del usuario) -> ÁMBAR Y GRANDE
+                                h2: ({ node, ...props }) => <h2 className="text-3xl font-bold text-amber-500 mt-12 mb-6 tracking-tight" {...props} />,
+
+                                // Forzamos el estilo del H3 (Los "###") -> BLANCO Y MEDIANO
+                                h3: ({ node, ...props }) => <h3 className="text-2xl font-semibold text-zinc-100 mt-8 mb-4" {...props} />,
+
+                                // Forzamos el estilo de los párrafos -> GRIS CLARO Y CON MARGEN
+                                p: ({ node, ...props }) => <p className="text-lg text-zinc-300 leading-8 mb-6" {...props} />,
+
+                                // Forzamos las listas (bullets)
+                                ul: ({ node, ...props }) => <ul className="list-disc list-outside ml-6 mb-6 text-zinc-300 space-y-2" {...props} />,
+                                li: ({ node, ...props }) => <li className="pl-2" {...props} />,
+
+                                // Forzamos las negritas
+                                strong: ({ node, ...props }) => <strong className="font-bold text-white" {...props} />,
+
+                                // Forzamos los enlaces
+                                a: ({ node, ...props }) => <a className="text-blue-400 hover:text-blue-300 underline underline-offset-4 transition-colors" {...props} />,
+                            }}
+                        >
+                            {post.content}
+                        </ReactMarkdown>
                     </article>
 
                     {/* Sección "Leer más" para reducir Bounce Rate (Patel Style) */}
