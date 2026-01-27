@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import { Metadata } from "next";
 import Link from "next/link";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nelux.es';
 const DEFAULT_IMAGE = '/default-blog.jpg';
@@ -240,20 +240,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                         )}
                     </header>
 
-                    <section className="prose prose-invert prose-zinc max-w-none 
-          prose-headings:font-bold prose-headings:tracking-tight
-          prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6
-          prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4
-          prose-p:text-zinc-400 prose-p:leading-relaxed prose-p:text-lg
-          prose-strong:text-zinc-100
-          prose-code:text-amber-500 prose-code:bg-zinc-900 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none
-          prose-pre:bg-zinc-900 prose-pre:border prose-pre:border-zinc-800
-          prose-a:text-amber-500 prose-a:no-underline hover:prose-a:underline
-          prose-blockquote:border-l-amber-500 prose-blockquote:bg-zinc-900/50 prose-blockquote:py-1 prose-blockquote:px-6 prose-blockquote:rounded-r-xl
-          prose-img:rounded-2xl prose-img:border prose-img:border-zinc-800
-        ">
+                    <article className="prose prose-invert prose-lg max-w-none prose-headings:text-amber-500 prose-a:text-blue-400 hover:prose-a:text-blue-300">
                         <ReactMarkdown>{post.content}</ReactMarkdown>
-                    </section>
+                    </article>
 
                     {/* Sección "Leer más" para reducir Bounce Rate (Patel Style) */}
                     <aside className="mt-16 p-8 bg-zinc-900/50 rounded-2xl border border-zinc-800">

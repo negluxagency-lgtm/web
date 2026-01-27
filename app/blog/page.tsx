@@ -4,7 +4,7 @@ import { Footer } from "@/components/landing/Footer";
 import Image from "next/image";
 import Link from "next/link";
 
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export default async function BlogPage() {
     const { data: posts, error } = await supabase
