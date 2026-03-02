@@ -4,92 +4,107 @@ import { Footer } from "@/components/landing/Footer";
 
 export default function TerminosCondiciones() {
     return (
-        <main className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-amber-500 selection:text-zinc-950">
+        <main className="min-h-screen bg-zinc-950 text-zinc-400 selection:bg-rose-500 selection:text-white font-[family-name:var(--font-outfit)]">
             <Navbar />
             <div className="max-w-4xl mx-auto px-6 py-32">
-                <h1 className="text-4xl font-bold text-white mb-12">Términos y Condiciones</h1>
+                <header className="mb-16">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Términos y Condiciones de Uso</h1>
+                    <p className="text-sm text-zinc-500">Última actualización: 02 de marzo de 2025</p>
+                </header>
 
-                <div className="space-y-12">
-                    <p className="text-sm text-zinc-500 italic">Última actualización: 7 de abril de 2025</p>
-
+                <div className="space-y-12 text-lg leading-relaxed">
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">1. Objeto</h2>
-                        <p className="leading-relaxed">Estos términos y condiciones regulan el uso de los servicios ofrecidos por Nelux (en adelante, “la Empresa”) a sus clientes empresariales. Al contratar nuestros servicios, el cliente acepta cumplir con estas condiciones.</p>
+                        <p>
+                            Bienvenido a <strong>Nelux</strong>. Al acceder o utilizar nuestro software ubicado en{" "}
+                            <a href="https://nelux.es" className="text-rose-500 hover:text-rose-400 transition-colors">nelux.es</a> y{" "}
+                            <a href="https://app.nelux.es" className="text-rose-500 hover:text-rose-400 transition-colors">app.nelux.es</a>,
+                            usted acepta quedar vinculado por los siguientes Términos y Condiciones.
+                        </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">2. Servicios</h2>
-                        <p className="leading-relaxed">Nelux ofrece servicios de automatización y consultoría tecnológica dirigidos exclusivamente a empresas (B2B). Todos los servicios se prestan según las condiciones pactadas en el contrato específico con cada cliente.</p>
+                        <h2 className="text-2xl font-bold text-white mb-4">1. Objeto del Servicio</h2>
+                        <p>
+                            Nelux ofrece una plataforma de gestión para barberías que incluye servicios de agenda, gestión de clientes y un sistema de facturación diseñado para el cumplimiento de la <strong>Ley 11/2021 (Ley Antifraude)</strong> en España.
+                        </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">3. Contratación y Facturación</h2>
-                        <ul className="list-disc pl-5 space-y-2">
-                            <li>La contratación de los servicios se formaliza mediante un acuerdo escrito o confirmación por correo electrónico.</li>
-                            <li>La facturación se realizará según lo acordado en el contrato, y los pagos deberán efectuarse en los plazos indicados.</li>
-                            <li>En caso de retraso en el pago, Nelux se reserva el derecho de suspender temporalmente los servicios hasta que se regularice la situación.</li>
+                        <h2 className="text-2xl font-bold text-white mb-4">2. Responsabilidad del Usuario (El Barbero)</h2>
+                        <ul className="space-y-4">
+                            <li>
+                                <strong className="text-zinc-200 block mb-1">Veracidad de los datos:</strong>
+                                El usuario es responsable de la exactitud de los datos fiscales introducidos (NIF, domicilio, importes).
+                            </li>
+                            <li>
+                                <strong className="text-zinc-200 block mb-1">Uso del software:</strong>
+                                El usuario se compromete a no utilizar el software para actividades ilícitas.
+                            </li>
+                            <li>
+                                <strong className="text-zinc-200 block mb-1">Obligación tributaria:</strong>
+                                Nelux facilita la creación de facturas inalterables y encadenadas (conforme a la normativa), pero la responsabilidad final de declarar dichos ingresos y remitirlos a la Agencia Tributaria recae exclusivamente en el usuario.
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section className="p-8 border border-zinc-800 bg-zinc-900/50 rounded-2xl">
+                        <h2 className="text-2xl font-bold text-white mb-4">3. Inalterabilidad de las Facturas (Ley Antifraude)</h2>
+                        <p className="mb-4 text-zinc-300">De acuerdo con la normativa vigente, el usuario acepta y comprende que:</p>
+                        <ul className="list-disc pl-6 space-y-3">
+                            <li>Una vez emitida una factura, el sistema no permite su edición ni eliminación para garantizar la integridad exigida por Hacienda.</li>
+                            <li>En caso de error, el usuario deberá emitir una <strong>Factura Rectificativa</strong> siguiendo el procedimiento habilitado en la plataforma.</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">4. Obligaciones del Cliente</h2>
-                        <p className="leading-relaxed mb-4">El cliente se compromete a:</p>
-                        <ul className="list-disc pl-5 space-y-2">
-                            <li>Facilitar toda la información necesaria para la correcta prestación de los servicios.</li>
-                            <li>Cumplir con la normativa vigente aplicable en materia de protección de datos, seguridad y propiedad intelectual.</li>
-                            <li>No utilizar los servicios de forma ilegal o que pueda dañar la reputación o infraestructura de Nelux.</li>
+                        <h2 className="text-2xl font-bold text-white mb-4">4. Propiedad Intelectual</h2>
+                        <p>
+                            Todo el código, diseño, logotipos y arquitectura de Nelux son propiedad exclusiva de Nelux. Queda prohibida la reproducción total o parcial del software sin autorización expresa.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-white mb-4">5. Suscripción y Pagos</h2>
+                        <p className="mb-4">El acceso a Nelux se realiza mediante planes de suscripción (mensual/anual).</p>
+                        <p>
+                            El impago de la cuota resultará en la suspensión del acceso al servicio, aunque los datos de facturación se mantendrán custodiados según el periodo legal obligatorio.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-white mb-4">6. Limitación de Responsabilidad</h2>
+                        <p className="mb-4 text-zinc-300 font-medium">Nelux no se hace responsable de:</p>
+                        <ul className="list-disc pl-6 space-y-3">
+                            <li>Pérdidas económicas debidas a caídas temporales del servicio o de internet.</li>
+                            <li>Sanciones de la Agencia Tributaria derivadas de un mal uso del software por parte del usuario o de la falta de presentación de impuestos.</li>
+                            <li>Errores en el escaneo del código QR si los datos introducidos por el usuario son incorrectos.</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">5. Propiedad Intelectual</h2>
-                        <p className="leading-relaxed">Todos los contenidos, herramientas, software y documentación proporcionados por Nelux son propiedad de la empresa y están protegidos por la legislación de propiedad intelectual. El cliente recibe únicamente una licencia limitada para utilizar los servicios contratados según lo acordado.</p>
+                        <h2 className="text-2xl font-bold text-white mb-4">7. Protección de Datos y Privacidad</h2>
+                        <p>
+                            El tratamiento de los datos personales se rige por nuestra Política de Privacidad. Al aceptar estos términos, el usuario acepta que Nelux actúe como "Encargado de Tratamiento" de los datos de sus clientes de barbería según el RGPD.
+                        </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">6. Confidencialidad</h2>
-                        <p className="leading-relaxed">Ambas partes se comprometen a mantener la confidencialidad de la información intercambiada y a no divulgarla a terceros sin consentimiento previo, salvo obligación legal.</p>
+                        <h2 className="text-2xl font-bold text-white mb-4">8. Modificaciones</h2>
+                        <p>
+                            Nos reservamos el derecho de modificar estos términos para adaptarlos a cambios legislativos (como nuevas normativas de la AEAT). El uso continuado del servicio tras un cambio implica la aceptación de los nuevos términos.
+                        </p>
                     </section>
 
                     <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">7. Responsabilidad</h2>
-                        <ul className="list-disc pl-5 space-y-2">
-                            <li>Nelux no será responsable de daños indirectos, lucro cesante o pérdidas de datos ocasionados por el uso de sus servicios.</li>
-                            <li>La responsabilidad máxima de Nelux frente al cliente estará limitada al importe total abonado por los servicios contratados en los últimos 12 meses.</li>
-                        </ul>
+                        <h2 className="text-2xl font-bold text-white mb-4">9. Jurisdicción</h2>
+                        <p>
+                            Para cualquier controversia, las partes se someten a los juzgados y tribunales de la ciudad correspondiente, España.
+                        </p>
                     </section>
 
-                    <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">8. Protección de Datos</h2>
-                        <p className="leading-relaxed">Los datos personales recogidos se tratarán conforme a nuestra Política de Privacidad y la legislación vigente en España y la UE.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">9. Modificaciones</h2>
-                        <p className="leading-relaxed">Nelux se reserva el derecho de actualizar estos términos en cualquier momento. Las modificaciones serán efectivas desde su publicación en nuestra web o comunicación directa al cliente.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">10. Terminación del Servicio</h2>
-                        <ul className="list-disc pl-5 space-y-2">
-                            <li>Cualquiera de las partes puede rescindir el contrato mediante aviso por escrito, respetando los plazos acordados.</li>
-                            <li>Nelux puede suspender los servicios de manera inmediata en caso de incumplimiento grave por parte del cliente.</li>
-                        </ul>
-                    </section>
-
-                    <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">11. Ley Aplicable y Jurisdicción</h2>
-                        <p className="leading-relaxed">Estos términos se rigen por la legislación española. Para cualquier conflicto derivado de su interpretación o ejecución, las partes se someten a los tribunales de la ciudad de Madrid, salvo que la ley indique otra jurisdicción obligatoria.</p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-2xl font-bold text-white mb-4">Contacto</h2>
-                        <p className="leading-relaxed">Para cualquier consulta sobre estos términos, escríbenos a <a href="mailto:contacto@nelux.es" className="text-amber-500 hover:underline">contacto@nelux.es</a>.</p>
-                    </section>
-
-                    <div>
-                        <Link href="/" className="inline-flex items-center text-amber-500 hover:text-amber-400 font-semibold transition-colors">
-                            ← Inicio
+                    <div className="pt-12 border-t border-zinc-900">
+                        <Link href="/" className="group inline-flex items-center gap-2 text-rose-500 hover:text-rose-400 font-semibold transition-all">
+                            <span className="group-hover:-translate-x-1 transition-transform">←</span> Volver al Inicio
                         </Link>
                     </div>
                 </div>

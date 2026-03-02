@@ -41,6 +41,7 @@ export function Footer() {
                             <ul className="flex flex-col gap-1.5 md:gap-3">
                                 <li><Link href="/aviso-legal" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Aviso Legal</Link></li>
                                 <li><Link href="/politica-de-privacidad" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Privacidad</Link></li>
+                                <li><Link href="/terminos-y-condiciones" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Términos</Link></li>
                             </ul>
                             <div className="flex gap-2 md:gap-4 mt-1">
                                 <a href="https://instagram.com/nelux.ai" target="_blank" rel="noopener noreferrer" className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-lg md:rounded-xl hover:border-amber-500/50 hover:text-amber-500 transition-all">
