@@ -1,15 +1,15 @@
 # [005] CREACIÓN DE PÁGINA: POLÍTICA DE PRIVACIDAD
 
 **Estado:** ACTIVO
-**Fecha de Creación:** 2026-01-26
-**Autor:** Antigravity Agent
+**Fecha de Actualización:** 2026-03-15
+**Autor:** Antigravity Agent (Nivel Senior)
 
 ## 1. CONTEXTO Y OBJETIVO
-Crear la página `/politica-de-privacidad` con el texto legal proporcionado.
+Mantener la página `/politica-de-privacidad` actualizada con el texto legal de 2026, cumpliendo con RGPD, Veri*Factu y políticas de Meta.
 
 ## 2. RESTRICCIONES (CRÍTICO)
-* **CONTENIDO:** Copiar el texto LITERAL proporcionado.
-* **ESTÉTICA:** Mantener `bg-zinc-950`, `text-zinc-400` para cuerpo, `text-white` para títulos. Fuentes `Outfit`.
+* **CONTENIDO:** Copiar el texto LITERAL proporcionado (Versión 15/03/2026). Debe incluir las 6 secciones: Recopilación, Uso/Terceros, Transferencias, Retención, Derechos y Transparencia IA.
+* **ESTÉTICA:** Mantener `bg-zinc-950`, `text-zinc-300` para cuerpo, `text-white` para títulos. Acentos en `text-amber-500`.
 * **RUTA:** `app/politica-de-privacidad/page.tsx`.
 
 ## 3. PROCEDIMIENTO (LEVITATION)
