@@ -7,13 +7,13 @@ export default function PoliticaPrivacidad() {
         <main className="min-h-screen bg-zinc-950 text-zinc-300 selection:bg-amber-500 selection:text-zinc-950">
             <Navbar />
             <div className="max-w-4xl mx-auto px-6 py-32">
-                <h1 className="text-4xl font-bold text-white mb-12">Política de Privacidad - NeluxBarber</h1>
+                <h1 className="text-4xl font-bold text-white mb-12">Política de Privacidad - Nelux (NeluxBarber)</h1>
 
                 <div className="space-y-12">
                     <p className="text-sm text-zinc-500 italic">Última actualización: 15 de marzo de 2026</p>
 
                     <p className="leading-relaxed">
-                        En NeluxBarber, la privacidad de nuestros barberos y sus clientes es nuestra prioridad. Esta política detalla cómo tratamos la información en cumplimiento con el Reglamento General de Protección de Datos (RGPD) y las políticas de Meta Platforms, Inc.
+                        En Nelux, la privacidad de nuestros barberos y sus clientes es nuestra prioridad. Esta política detalla cómo tratamos la información en cumplimiento con el Reglamento General de Protección de Datos (RGPD) y las políticas de Meta Platforms, Inc.
                     </p>
 
                     <section>
