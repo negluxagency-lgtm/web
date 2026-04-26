@@ -13,6 +13,8 @@ const config: Config = {
                 sans: ["var(--font-outfit)", "sans-serif"],
                 // Y creamos una nueva clase 'font-script' para la cursiva
                 script: ["var(--font-great-vibes)", "cursive"],
+                // Fuente para NeluxResell
+                manrope: ["var(--font-manrope)", "sans-serif"],
             },
             colors: {
                 // Aseguramos tus colores

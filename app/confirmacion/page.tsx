@@ -1,5 +1,5 @@
 import React from 'react';
-import { CheckCircle2, Mail, Gem } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Gem } from 'lucide-react';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -21,11 +21,12 @@ export default function ConfirmationPage() {
       {/* Navegación Minimalista (Solo Logo) */}
       <div className="absolute top-0 w-full p-6 flex justify-center opacity-80">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-amber-400 to-orange-600 rounded-xl flex items-center justify-center shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-            <Gem className="w-4 h-4 text-zinc-950" />
+          <div className="flex items-center justify-center shrink-0 font-manrope italic font-extrabold text-2xl tracking-tighter pr-1">
+            <span className="text-white">N</span>
+            <span className="text-amber-500">R</span>
           </div>
-          <span className="font-bold text-lg tracking-tight uppercase">
-            Nelux <span className="font-script text-amber-500 text-2xl font-normal lowercase ml-1">Vinted</span> Luxury
+          <span className="font-manrope italic font-extrabold text-xl tracking-tight whitespace-nowrap pr-1">
+            <span className="text-white">Nelux</span><span className="text-amber-500">Resell</span>
           </span>
         </div>
       </div>
@@ -50,19 +51,24 @@ export default function ConfirmationPage() {
           
           <h2 className="font-script text-3xl text-amber-500 mb-8 opacity-90 drop-shadow-sm">Tu imperio comienza aquí</h2>
 
-          <div className="bg-zinc-950/50 border border-white/5 rounded-2xl p-6 text-left flex items-start gap-4">
-            <Mail className="w-6 h-6 text-amber-500 shrink-0 mt-0.5" />
-            <div>
-              <h3 className="font-bold text-zinc-100 mb-2">Revisa tu bandeja de entrada</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">
-                En breves recibirás un correo electrónico en la <strong className="text-zinc-200">dirección que has utilizado para realizar el pago</strong> con el acceso total a la guía.
+          <div className="bg-zinc-950/50 border border-white/5 rounded-2xl p-8 text-center flex flex-col items-center gap-6 mt-8 relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 to-transparent opacity-50" />
+            
+            <div className="relative z-10">
+              <h3 className="font-bold text-zinc-100 mb-3 text-xl">Tu guía está lista</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed max-w-sm mx-auto">
+                Haz clic en el siguiente enlace para acceder inmediatamente a todo el contenido y la lista de proveedores.
               </p>
             </div>
+            
+            <a 
+              href="https://nelux.es/guia_vinted" 
+              className="relative z-10 group flex items-center gap-3 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-zinc-950 px-8 py-4 rounded-xl font-black transition-all duration-300 transform hover:-translate-y-1 shadow-[0_10px_20px_-5px_rgba(245,158,11,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(245,158,11,0.6)] border border-amber-300/20"
+            >
+              ACCEDER A LA GUÍA
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </a>
           </div>
-          
-          <p className="text-xs text-zinc-500 mt-8">
-            Si no lo encuentras en 5 minutos, recuerda revisar tu carpeta de Spam o Promociones.
-          </p>
 
         </div>
 

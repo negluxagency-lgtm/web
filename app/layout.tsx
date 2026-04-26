@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Great_Vibes } from "next/font/google";
+import { Outfit, Great_Vibes, Manrope } from "next/font/google";
 import "./globals.css";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -18,6 +18,13 @@ const greatVibes = Great_Vibes({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-great-vibes",
+  display: "swap",
+});
+
+// Fuente Manrope (Para NeluxResell)
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
   display: "swap",
 });
 
@@ -104,7 +111,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${greatVibes.variable} scroll-smooth`}>
+    <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} scroll-smooth`}>
       <body className="font-sans antialiased bg-zinc-950 text-zinc-50 selection:bg-amber-500 selection:text-zinc-950 relative overflow-x-hidden">
 
         {/* Gestor de scroll suave */}
