@@ -113,6 +113,14 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: 'default',
     title: 'Vinted',
+    startupImage: '/Logo_ios.png',
+  },
+
+  // 11. Icono para pantalla de inicio iOS (apple-touch-icon)
+  icons: {
+    apple: [
+      { url: '/Logo_ios.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 };
 
