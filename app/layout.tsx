@@ -114,7 +114,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} scroll-smooth`}>
-      <body className="font-sans antialiased bg-zinc-950 text-zinc-50 selection:bg-amber-500 selection:text-zinc-950 relative overflow-x-hidden">
+      <body className="font-sans antialiased bg-zinc-950 text-zinc-50 relative overflow-x-hidden">
 
         {/* Gestor de scroll suave */}
         <ScrollReveal />
