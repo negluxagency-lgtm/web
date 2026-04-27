@@ -2,14 +2,28 @@ import { NextResponse } from 'next/server';
 import webpush from 'web-push';
 import { subscriptions } from '@/lib/push-store';
 
-webpush.setVapidDetails(
-  process.env.VAPID_EMAIL!,
-  process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!,
-  process.env.VAPID_PRIVATE_KEY!
-);
+let isVapidConfigured = false;
+
+function configureVapid() {
+  if (isVapidConfigured) return;
+  
+  // Evitamos que crashee en tiempo de build (ej. Netlify) si no están las variables
+  if (!process.env.VAPID_EMAIL || !process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+    console.warn('[Push] VAPID keys no configuradas en las variables de entorno.');
+    return;
+  }
+  
+  webpush.setVapidDetails(
+    process.env.VAPID_EMAIL,
+    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    process.env.VAPID_PRIVATE_KEY
+  );
+  isVapidConfigured = true;
+}
 
 export async function POST(request: Request) {
   try {
+    configureVapid();
     const body = await request.json();
     const { title, body: messageBody, url } = body;
 
