@@ -41,38 +41,38 @@ async function subscribeToPush(registration: ServiceWorkerRegistration) {
 
 export function PwaRegistrar() {
   const [showBanner, setShowBanner] = useState(false);
-  const [swRegistration, setSwRegistration] = useState<ServiceWorkerRegistration | null>(null);
 
   useEffect(() => {
-    if (!('serviceWorker' in navigator) || !VAPID_PUBLIC_KEY) return;
+    if (!('serviceWorker' in navigator) || !('Notification' in window) || !VAPID_PUBLIC_KEY) {
+      console.log('[PWA] Push no soportado o faltan claves');
+      return;
+    }
 
-    // Registrar Service Worker
-    navigator.serviceWorker.register('/sw.js').then(async (registration) => {
-      await navigator.serviceWorker.ready;
-      setSwRegistration(registration);
-
-      // Si ya tiene permiso concedido → suscribir directamente sin banner
-      if ('Notification' in window && Notification.permission === 'granted') {
-        await subscribeToPush(registration);
-        return;
-      }
-
-      // Si no ha decidido → mostrar banner tras 4 segundos
-      if ('Notification' in window && Notification.permission === 'default') {
-        setTimeout(() => setShowBanner(true), 4000);
-      }
-    }).catch((err) => {
+    // Registrar Service Worker en segundo plano
+    navigator.serviceWorker.register('/sw.js').catch((err) => {
       console.error('[PWA] Error al registrar SW:', err);
     });
+
+    // Gestionar UI de permisos
+    if (Notification.permission === 'granted') {
+      navigator.serviceWorker.ready.then(subscribeToPush);
+    } else if (Notification.permission === 'default') {
+      // Reducido a 2 segundos para que aparezca más rápido
+      const timer = setTimeout(() => setShowBanner(true), 2000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   const handleAllow = async () => {
     setShowBanner(false);
-    if (!swRegistration) return;
-
-    const permission = await Notification.requestPermission();
-    if (permission === 'granted') {
-      await subscribeToPush(swRegistration);
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        const registration = await navigator.serviceWorker.ready;
+        await subscribeToPush(registration);
+      }
+    } catch (err) {
+      console.error('[PWA] Error pidiendo permiso:', err);
     }
   };
 
