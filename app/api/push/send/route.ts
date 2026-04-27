@@ -6,16 +6,17 @@ let isVapidConfigured = false;
 
 function configureVapid() {
   if (isVapidConfigured) return;
+  const PUBLIC_KEY = 'BHeV-yeNxfCqz3W__SXzNTQKsL6p5thswwUW-dy3ToiAUSi2nS47PHX-sHEeMSxXAjbky20XmhIdGeE8FqQ0FzM';
   
   // Evitamos que crashee en tiempo de build (ej. Netlify) si no están las variables
-  if (!process.env.VAPID_EMAIL || !process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+  if (!process.env.VAPID_EMAIL || !process.env.VAPID_PRIVATE_KEY) {
     console.warn('[Push] VAPID keys no configuradas en las variables de entorno.');
     return;
   }
   
   webpush.setVapidDetails(
     process.env.VAPID_EMAIL,
-    process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY,
+    PUBLIC_KEY,
     process.env.VAPID_PRIVATE_KEY
   );
   isVapidConfigured = true;
