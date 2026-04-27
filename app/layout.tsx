@@ -3,6 +3,8 @@ import { Outfit, Great_Vibes, Manrope } from "next/font/google";
 import "./globals.css";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import Script from 'next/script';
+
 
 // --- Configuración de Fuentes ---
 
@@ -141,6 +143,13 @@ export default function RootLayout({
 
         {/* Google Analytics 4 (Optimizado para Core Web Vitals) */}
         <GoogleAnalytics gaId="G-JPTSPNH3EW" />
+
+        {/* Cloudflare Web Analytics */}
+        <Script
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "270252c5c5b04d86b2f8e002727f27b6"}'
+          strategy="afterInteractive"
+        />
 
       </body>
     </html>
