@@ -57,7 +57,7 @@ export default function ConfirmationPage() {
             <div className="relative z-10">
               <h3 className="font-bold text-zinc-100 mb-3 text-xl">Tu guía está lista</h3>
               <p className="text-zinc-400 text-sm leading-relaxed max-w-sm mx-auto">
-                Haz clic en el siguiente enlace para acceder inmediatamente a todo el contenido y la lista de proveedores.
+                Haz clic en el siguiente enlace para acceder inmediatamente a todo el contenido y la lista de proveedores. También te la hemos enviado a tu correo electrónico.
               </p>
             </div>
 
