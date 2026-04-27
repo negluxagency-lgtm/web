@@ -6,8 +6,8 @@
 const BASE_URL = 'https://nelux.es'; // Cambia a http://localhost:3000 para pruebas locales
 
 const notification = {
-  title: '¡Nuevo mensaje!',              // Título que aparece en la notificación
-  body: 'Tienes un nuevo comprador.',    // Texto del cuerpo
+  title: '¡Nuevo!',              // Título que aparece en la notificación
+  body: 'Tienes un nuevo compradr.',    // Texto del cuerpo
   url: '/Roni',                          // Página a abrir al hacer clic
 };
 
