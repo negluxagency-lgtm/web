@@ -4,6 +4,7 @@ import "./globals.css";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
+import { PwaRegistrar } from '@/components/PwaRegistrar';
 
 
 // --- Configuración de Fuentes ---
@@ -103,6 +104,16 @@ export const metadata: Metadata = {
   // 8. Favicon e Iconos → Configurados mediante archivos en /app:
   //    - icon.png (favicon general)
   //    - apple-icon.png (iOS/iPadOS)
+
+  // 9. PWA Manifest
+  manifest: '/manifest.json',
+
+  // 10. Apple meta para PWA
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Vinted',
+  },
 };
 
 // --- Layout Principal (UI) ---
@@ -115,6 +126,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} scroll-smooth`}>
       <body className="font-sans antialiased bg-zinc-950 text-zinc-50 relative overflow-x-hidden">
+
+        {/* PWA Service Worker + Permisos de Notificación */}
+        <PwaRegistrar />
 
         {/* Gestor de scroll suave */}
         <ScrollReveal />
