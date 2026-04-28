@@ -22,7 +22,9 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const pdfPath = path.join(process.cwd(), 'private', 'Guia_Vinted.pdf');
+    const pdfPath = path.join(process.cwd(), 'public', '_guia_vinted_protegida_.pdf');
+    console.log('[guia-vinted-pdf] Intentando leer PDF en:', pdfPath);
+    
     const pdfBuffer = await readFile(pdfPath);
 
     return new NextResponse(pdfBuffer, {
@@ -33,7 +35,11 @@ export async function GET(req: NextRequest) {
         'Cache-Control': 'private, no-store',
       },
     });
-  } catch {
-    return NextResponse.json({ error: 'PDF no encontrado' }, { status: 404 });
+  } catch (err: any) {
+    console.error('[guia-vinted-pdf] Error al leer el PDF:', err.message);
+    return NextResponse.json({ 
+      error: 'PDF no encontrado',
+      details: process.env.NODE_ENV === 'development' ? err.message : undefined
+    }, { status: 404 });
   }
 }

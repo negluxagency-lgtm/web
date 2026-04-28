@@ -39,6 +39,3 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# PDF protegido (DEBE subirse al repo para que esté en el servidor, pero NO está en /public)
-# /private (Comentado para permitir subida)
