@@ -7,24 +7,9 @@ export default function GuiaVintedPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [attempts, setAttempts] = useState(0);
-  const [accessGranted, setAccessGranted] = useState(false);
-  const [checking, setChecking] = useState(true);
 
-  // Comprueba si ya tiene cookie válida al cargar
   useEffect(() => {
-    const checkExistingAccess = async () => {
-      try {
-        const res = await fetch('/api/guia-vinted-pdf', { method: 'GET' });
-        if (res.ok) {
-          setAccessGranted(true);
-        }
-      } catch {
-        // Sin acceso previo, mostrar popup
-      } finally {
-        setChecking(false);
-      }
-    };
-    checkExistingAccess();
+    // No precargamos nada al inicio
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,7 +29,8 @@ export default function GuiaVintedPage() {
       const data = await res.json();
 
       if (data.valid) {
-        setAccessGranted(true);
+        // Redirigir directamente al PDF — el navegador usa su visor nativo
+        window.location.href = '/api/guia-vinted-pdf';
       } else {
         setAttempts((prev) => prev + 1);
         setError(
@@ -60,22 +46,15 @@ export default function GuiaVintedPage() {
     }
   };
 
-  if (checking) {
+  if (loading) {
     return (
       <div style={styles.fullscreen}>
-        <div style={styles.spinner} />
-      </div>
-    );
-  }
-
-  if (accessGranted) {
-    return (
-      <div style={styles.pdfContainer}>
-        <iframe
-          src="/api/guia-vinted-pdf"
-          style={styles.iframe}
-          title="Guía Vinted NeluxResell"
-        />
+        <div style={styles.bg} />
+        <div style={styles.overlay} />
+        <div style={{ position: 'relative', zIndex: 10, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16 }}>
+          <div style={styles.spinner} />
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14, fontFamily: "'Inter', sans-serif" }}>Verificando...</p>
+        </div>
       </div>
     );
   }
