@@ -9,7 +9,7 @@ export default function TerminosCondiciones() {
             <div className="max-w-4xl mx-auto px-6 py-32">
                 <header className="mb-16">
                     <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">Términos y Condiciones de Uso</h1>
-                    <p className="text-sm text-zinc-500">Última actualización: 02 de marzo de 2025</p>
+                    <p className="text-sm text-zinc-500">Última actualización: 02 de marzo de 2026</p>
                 </header>
 
                 <div className="space-y-12 text-lg leading-relaxed">

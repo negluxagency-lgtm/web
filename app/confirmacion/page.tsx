@@ -62,7 +62,7 @@ export default function ConfirmationPage() {
             </div>
 
             <a
-              href="https://nelux.es/guia_vinted.pdf"
+              href="/guia_vinted"
               className="relative z-10 group flex items-center gap-3 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-zinc-950 px-8 py-4 rounded-xl font-black transition-all duration-300 transform hover:-translate-y-1 shadow-[0_10px_20px_-5px_rgba(245,158,11,0.4)] hover:shadow-[0_15px_30px_-5px_rgba(245,158,11,0.6)] border border-amber-300/20"
             >
               ACCEDER A LA GUÍA
