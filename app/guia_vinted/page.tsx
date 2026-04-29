@@ -149,11 +149,12 @@ export default function GuiaVintedPage() {
 
         <p style={styles.footer}>
           ¿Problemas? Escríbenos a{' '}
-          <a href="mailto:hola@nelux.es" style={styles.link}>
-            hola@nelux.es
+          <a href="mailto:contacto@nelux.es" style={styles.link}>
+            contacto@nelux.es o TikTok
           </a>
         </p>
       </div>
+
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -183,6 +184,7 @@ export default function GuiaVintedPage() {
           transform: translateY(-1px);
           box-shadow: 0 8px 25px rgba(245, 158, 11, 0.45) !important;
         }
+
       `}</style>
     </div>
   );

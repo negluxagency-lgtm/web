@@ -73,11 +73,11 @@ const VintedPage = () => {
           {/* Mockup del Producto */}
           <div className="relative max-w-md md:max-w-xl mx-auto mb-12 md:mb-16">
             <div className="absolute inset-0 bg-amber-500/20 blur-3xl rounded-full animate-pulse" />
-            <Image 
-              src="/Neluxresell.png" 
-              alt="Guía Oficial NeluxResell" 
-              width={800} 
-              height={800} 
+            <Image
+              src="/Neluxresell.png"
+              alt="Guía Oficial NeluxResell"
+              width={800}
+              height={800}
               className="relative z-10 w-full h-auto drop-shadow-[0_20px_50px_rgba(245,158,11,0.3)] hover:scale-105 transition-transform duration-700"
               priority
             />
@@ -97,6 +97,71 @@ const VintedPage = () => {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4 md:gap-8 text-zinc-500 text-[10px] md:text-sm uppercase tracking-widest font-bold">
             <span className="flex items-center gap-2"><ShieldCheck className="w-4 h-4 shrink-0 text-zinc-400" /> Pago 100% Seguro por Stripe</span>
             <span className="flex items-center gap-2"><Zap className="w-4 h-4 shrink-0 text-zinc-400" /> Entrega Inmediata</span>
+          </div>
+
+          {/* Telegram Community Section */}
+          <div className="mt-12 w-full max-w-2xl mx-auto px-4 md:px-0">
+            <div className="relative bg-gradient-to-br from-sky-950/60 to-zinc-950/80 border border-sky-500/30 rounded-3xl p-8 md:p-10 text-center overflow-hidden backdrop-blur-xl shadow-[0_0_60px_-10px_rgba(14,165,233,0.25)]">
+              {/* Glow orb */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-40 bg-sky-500/15 blur-[80px] rounded-full pointer-events-none" />
+
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 bg-sky-500/15 border border-sky-500/30 text-sky-300 px-4 py-1.5 rounded-full text-xs font-bold mb-6 uppercase tracking-widest">
+                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                100% Gratuito
+              </div>
+
+              {/* Icon */}
+              <div className="w-20 h-20 md:w-24 md:h-24 mx-auto flex items-center justify-center bg-sky-500/15 border-2 border-sky-500/30 rounded-full mb-6 shadow-[0_0_40px_rgba(14,165,233,0.3)]">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="currentColor" className="text-sky-400">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.13 13.4l-2.963-.924c-.644-.204-.657-.644.136-.953l11.57-4.461c.537-.194 1.006.131.831.958z" />
+                </svg>
+              </div>
+
+              {/* Headline */}
+              <h3 className="text-2xl md:text-4xl font-extrabold text-white mb-3 tracking-tight relative z-10">
+                Únete a la{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-sky-500">
+                  Comunidad de Nelux Resell Gratis
+                </span>
+              </h3>
+              <p className="text-zinc-400 text-sm md:text-base max-w-md mx-auto mb-8 leading-relaxed relative z-10">
+                El grupo gratuito de Telegram donde encontrarás <strong className="text-zinc-200">productos ganadores gratis</strong>, resolvemos tus dudas y conectas con otros revendedores españoles.
+              </p>
+
+              {/* Perks */}
+              <div className="grid grid-cols-2 gap-3 mb-8 relative z-10">
+                {[
+                  { icon: '🏆', text: 'Productos ganadores gratis' },
+                  { icon: '💬', text: 'Dudas resueltas al momento' },
+                  { icon: '🇪🇸', text: 'Solo revendedores españoles' },
+                  { icon: '🔒', text: 'Grupo privado y exclusivo' },
+                ].map((perk) => (
+                  <div key={perk.text} className="flex items-center gap-2.5 bg-white/5 border border-white/8 rounded-xl px-4 py-3 text-left">
+                    <span className="text-xl shrink-0">{perk.icon}</span>
+                    <span className="text-zinc-300 text-xs md:text-sm font-medium leading-snug">{perk.text}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div className="relative z-10">
+                <div className="absolute inset-0 bg-sky-500/30 blur-2xl rounded-full animate-pulse scale-75" />
+                <a
+                  id="telegram-join-btn"
+                  href="https://t.me/+36b1qS5wRWpjNDg0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative w-full flex items-center justify-center gap-3 bg-gradient-to-b from-sky-400 to-sky-600 hover:from-sky-300 hover:to-sky-500 text-white px-8 py-5 rounded-2xl font-black text-lg md:text-xl transition-all duration-300 shadow-[0_15px_40px_-10px_rgba(14,165,233,0.5)] hover:shadow-[0_20px_50px_-10px_rgba(14,165,233,0.7)] transform hover:-translate-y-2 active:translate-y-0 border border-white/10"
+                >
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L7.13 13.4l-2.963-.924c-.644-.204-.657-.644.136-.953l11.57-4.461c.537-.194 1.006.131.831.958z" />
+                  </svg>
+                  UNIRME AL GRUPO GRATIS
+                </a>
+                <p className="mt-4 text-zinc-600 text-xs uppercase tracking-widest font-bold">Sin compromisos · Acceso inmediato</p>
+              </div>
+            </div>
           </div>
         </div>
       </header>
@@ -121,7 +186,7 @@ const VintedPage = () => {
                 Encontrar un buen proveedor en China es un infierno: precios altísimos para guiris, calidad pésima que se nota a kilómetros, tiempos de envío absurdos y cero comunicación.
               </p>
             </div>
-            
+
             <div className="bg-zinc-900/30 border border-red-500/10 p-6 md:p-8 rounded-3xl relative overflow-hidden group">
               <div className="absolute top-0 left-0 w-2 h-full bg-red-500/20 group-hover:bg-red-500/50 transition-colors" />
               <h3 className="text-xl font-bold mb-3 text-zinc-200">La Verificación de 10€</h3>
@@ -184,6 +249,47 @@ const VintedPage = () => {
         </div>
       </section>
 
+
+      {/* --- Validation Proof Section --- */}
+      <section className="py-16 md:py-32 relative overflow-hidden bg-zinc-950/40 border-y border-white/5">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/5 blur-[150px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
+          <div className="text-center mb-12 md:mb-20">
+            <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+              <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+              Evidencia Real
+            </div>
+            <h2 className="text-3xl md:text-6xl font-extrabold mb-6 tracking-tight">
+              Cero Humo. <span className="font-script text-amber-500 font-normal text-5xl md:text-8xl align-middle ml-2">Resultados</span> Reales.
+            </h2>
+            <p className="text-zinc-400 text-base md:text-xl max-w-2xl mx-auto font-light">
+              No te pedimos que nos creas por fe. Aquí tienes los beneficios físicos y la mercancía generada, etiquetado con nuestra marca <strong className="text-zinc-200">NeluxResell</strong>.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+            {[1, 2, 3].map((num) => (
+              <div key={num} className="group relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] aspect-[4/5] md:aspect-[3/4]">
+                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-80" />
+                <Image
+                  src={`/${num}.jpeg`}
+                  alt={`Prueba de resultados NeluxResell ${num}`}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                />
+                <div className="absolute bottom-6 left-6 right-6 z-20">
+                  <div className="backdrop-blur-xl bg-zinc-950/60 border border-white/10 p-4 rounded-2xl flex items-center justify-between shadow-xl">
+                    <span className="font-manrope italic font-extrabold text-white text-sm tracking-tight">Nelux<span className="text-amber-500">Resell</span></span>
+                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* --- How it Works Section --- */}
       <section className="py-16 md:py-32 relative overflow-hidden bg-zinc-950/50">
         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/10 blur-[150px] rounded-full pointer-events-none" />
@@ -228,7 +334,7 @@ const VintedPage = () => {
           </h2>
 
           <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
-            
+
             {/* Lista de Beneficios */}
             <div className="relative space-y-4 md:space-y-5 bg-gradient-to-b from-zinc-900/90 to-zinc-950/90 p-8 md:p-12 rounded-[2.5rem] border border-white/10 backdrop-blur-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)]">
               <div className="absolute inset-0 bg-amber-500/5 opacity-50 rounded-[2.5rem] pointer-events-none" />
@@ -256,9 +362,9 @@ const VintedPage = () => {
               <div className="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full animate-pulse" />
               <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] aspect-[4/5] lg:aspect-auto lg:h-[700px]">
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent z-10 opacity-90" />
-                <Image 
-                  src="/Paquetes.jpg" 
-                  alt="Paquetes listos para enviar" 
+                <Image
+                  src="/Paquetes.jpg"
+                  alt="Paquetes listos para enviar"
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -277,62 +383,24 @@ const VintedPage = () => {
         </div>
       </section>
 
-      {/* --- Validation Proof Section --- */}
-      <section className="py-16 md:py-32 relative overflow-hidden bg-zinc-950/40 border-y border-white/5">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/5 blur-[150px] rounded-full pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-4 md:px-6 relative z-10">
-          <div className="text-center mb-12 md:mb-20">
-            <div className="inline-flex items-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
-              Evidencia Real
-            </div>
-            <h2 className="text-3xl md:text-6xl font-extrabold mb-6 tracking-tight">
-              Cero Humo. <span className="font-script text-amber-500 font-normal text-5xl md:text-8xl align-middle ml-2">Resultados</span> Reales.
-            </h2>
-            <p className="text-zinc-400 text-base md:text-xl max-w-2xl mx-auto font-light">
-              No te pedimos que nos creas por fe. Aquí tienes los beneficios físicos y la mercancía generada, etiquetado con nuestra marca <strong className="text-zinc-200">NeluxResell</strong>.
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-            {[1, 2, 3].map((num) => (
-              <div key={num} className="group relative rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_40px_-15px_rgba(0,0,0,0.7)] aspect-[4/5] md:aspect-[3/4]">
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent z-10 opacity-80" />
-                <Image 
-                  src={`/${num}.jpeg`}
-                  alt={`Prueba de resultados NeluxResell ${num}`}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-1000"
-                />
-                <div className="absolute bottom-6 left-6 right-6 z-20">
-                  <div className="backdrop-blur-xl bg-zinc-950/60 border border-white/10 p-4 rounded-2xl flex items-center justify-between shadow-xl">
-                    <span className="font-manrope italic font-extrabold text-white text-sm tracking-tight">Nelux<span className="text-amber-500">Resell</span></span>
-                    <ShieldCheck className="w-5 h-5 text-emerald-400" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* --- Guarantee / Insurance Section --- */}
       <section className="py-16 md:py-32 relative overflow-hidden">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-lg h-96 bg-emerald-500/10 blur-[120px] rounded-full pointer-events-none" />
-        
+
         <div className="max-w-4xl mx-auto px-4 md:px-6 relative z-10 text-center">
           <div className="bg-zinc-900/60 border border-emerald-500/20 backdrop-blur-xl p-8 sm:p-10 md:p-16 rounded-[2rem] md:rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(16,185,129,0.15)] relative overflow-hidden group">
             <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-50 pointer-events-none" />
-            
+
             <div className="w-20 h-20 md:w-24 md:h-24 bg-zinc-950 rounded-full mx-auto flex items-center justify-center border-2 border-emerald-500/30 mb-8 shadow-[0_0_30px_rgba(16,185,129,0.2)] group-hover:scale-110 transition-transform duration-500">
               <ShieldCheck className="w-10 h-10 md:w-12 md:h-12 text-emerald-400 group-hover:text-emerald-500 transition-colors" />
             </div>
-            
+
             <h2 className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight text-zinc-100">
               Seguro <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-600">Anti-Fracaso</span>
             </h2>
-            
+
             <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed">
               Confiamos tanto en nuestro sistema que te ofrecemos una garantía blindada. Si compras la guía, sigues los pasos al pie de la letra y <strong className="text-zinc-200">no has ganado dinero en un mes</strong> tras la compra, <span className="text-emerald-400 font-bold">te devolvemos el 100% de tu dinero</span>. Riesgo cero para ti.
             </p>
@@ -388,6 +456,7 @@ const VintedPage = () => {
           </div>
         </a>
       </div>
+
 
       {/* --- Footer --- */}
       <footer className="py-20 border-t border-zinc-800/50">
