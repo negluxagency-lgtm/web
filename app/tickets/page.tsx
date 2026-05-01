@@ -224,8 +224,15 @@ export default function TicketsPage() {
       });
 
       if (!response.ok) {
-        const json = await response.json();
-        throw new Error(json.error || 'Error al generar el ticket');
+        let errorMessage = 'Error al generar el ticket';
+        try {
+          const json = await response.json();
+          if (json.error) errorMessage = json.error;
+        } catch {
+          // Si Vercel devuelve un HTML de error (500), capturamos el status
+          errorMessage = `Error del servidor (${response.status})`;
+        }
+        throw new Error(errorMessage);
       }
 
       const blob = await response.blob();
