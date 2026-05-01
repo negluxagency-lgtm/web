@@ -9,8 +9,9 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: 'Acceso no autorizado' }, { status: 401 });
   }
 
+  let decoded;
   try {
-    const decoded = JSON.parse(Buffer.from(token, 'base64').toString('utf-8'));
+    decoded = JSON.parse(Buffer.from(token, 'base64').toString('utf-8'));
     const age = Date.now() - decoded.ts;
     const maxAge = 60 * 60 * 24 * 1000; // 24h en ms
 
@@ -22,8 +23,9 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const pdfPath = path.join(process.cwd(), 'public', '_guia_vinted_protegida_.pdf');
-    console.log('[guia-vinted-pdf] Intentando leer PDF en:', pdfPath);
+    const fileName = decoded.tipo === 'premium' ? 'Guia_premium.pdf' : '_guia_vinted_protegida_.pdf';
+    const pdfPath = path.join(process.cwd(), 'public', fileName);
+    console.log(`[guia-vinted-pdf] Sirviendo PDF (${decoded.tipo || 'normal'}):`, pdfPath);
     
     const pdfBuffer = await readFile(pdfPath);
 
@@ -31,7 +33,7 @@ export async function GET(req: NextRequest) {
       status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'inline; filename="Guia_Vinted.pdf"',
+        'Content-Disposition': `inline; filename="${fileName}"`,
         'Cache-Control': 'private, no-store',
       },
     });

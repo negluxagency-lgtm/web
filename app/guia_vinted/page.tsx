@@ -7,6 +7,7 @@ export default function GuiaVintedPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [attempts, setAttempts] = useState(0);
+  const [availableTypes, setAvailableTypes] = useState<string[]>([]);
 
   useEffect(() => {
     // No precargamos nada al inicio
@@ -29,8 +30,12 @@ export default function GuiaVintedPage() {
       const data = await res.json();
 
       if (data.valid) {
-        // Redirigir directamente al PDF — el navegador usa su visor nativo
-        window.location.href = '/api/guia-vinted-pdf';
+        if (data.multiple) {
+          setAvailableTypes(data.types);
+        } else {
+          // Redirigir directamente al PDF — el navegador usa su visor nativo
+          window.location.href = '/api/guia-vinted-pdf';
+        }
       } else {
         setAttempts((prev) => prev + 1);
         setError(
@@ -46,7 +51,30 @@ export default function GuiaVintedPage() {
     }
   };
 
-  if (loading) {
+  const handleTypeSelection = async (selectedType: string) => {
+    setLoading(true);
+    setError('');
+    
+    try {
+      const res = await fetch('/api/verify-vinted-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.trim(), selectedType }),
+      });
+      const data = await res.json();
+      if (data.valid && !data.multiple) {
+        window.location.href = '/api/guia-vinted-pdf';
+      } else {
+        setError('Error al cargar la guía seleccionada.');
+      }
+    } catch {
+      setError('Error de conexión. Inténtalo de nuevo.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading && availableTypes.length === 0) {
     return (
       <div style={styles.fullscreen}>
         <div style={styles.bg} />
@@ -89,63 +117,110 @@ export default function GuiaVintedPage() {
         </div>
 
         <h1 style={styles.title}>Acceso a tu Guía</h1>
-        <p style={styles.subtitle}>
-          Introduce el correo electrónico con el que realizaste la compra para acceder a tu contenido.
-        </p>
-
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <div style={styles.inputWrap}>
-            <svg style={styles.inputIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-              <polyline points="22,6 12,13 2,6" />
-            </svg>
-            <input
-              id="email-input"
-              type="email"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                setError('');
-              }}
-              placeholder="tu@correo.com"
-              style={styles.input}
-              autoComplete="email"
-              disabled={loading}
-              required
-            />
-          </div>
-
-          {error && (
-            <div style={styles.errorBox}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0 }}>
-                <circle cx="12" cy="12" r="10" />
-                <line x1="12" y1="8" x2="12" y2="12" />
-                <line x1="12" y1="16" x2="12.01" y2="16" />
-              </svg>
-              <span>{error}</span>
-            </div>
-          )}
-
-          <button
-            id="verify-email-btn"
-            type="submit"
-            style={{
-              ...styles.button,
-              opacity: loading ? 0.7 : 1,
-              cursor: loading ? 'not-allowed' : 'pointer',
-            }}
-            disabled={loading}
-          >
-            {loading ? (
-              <span style={styles.loadingRow}>
-                <span style={styles.btnSpinner} />
-                Verificando...
-              </span>
-            ) : (
-              'Acceder a mi Guía →'
+        
+        {availableTypes.length > 0 ? (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
+            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '15px', textAlign: 'center', marginBottom: '8px', lineHeight: '1.5' }}>
+              Hemos detectado que tienes acceso a varias guías. ¿Cuál deseas abrir?
+            </p>
+            {availableTypes.map((type) => (
+              <button
+                key={type}
+                onClick={() => handleTypeSelection(type)}
+                disabled={loading}
+                style={{
+                  ...styles.button,
+                  background: type === 'premium' 
+                    ? 'linear-gradient(135deg, #fbbf24, #f59e0b, #ea580c)' 
+                    : 'rgba(255,255,255,0.1)',
+                  color: type === 'premium' ? '#09090b' : '#fff',
+                  border: type === 'premium' ? 'none' : '1px solid rgba(255,255,255,0.2)',
+                  opacity: loading ? 0.7 : 1,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px'
+                }}
+              >
+                {loading ? <span style={styles.btnSpinner} /> : null}
+                {type === 'premium' ? 'Abrir Guía Premium 👑' : 'Abrir Guía Básica'}
+              </button>
+            ))}
+            
+            {error && (
+              <div style={styles.errorBox}>
+                <span>{error}</span>
+              </div>
             )}
-          </button>
-        </form>
+            
+            <button 
+              onClick={() => { setAvailableTypes([]); setError(''); }}
+              disabled={loading}
+              style={{ ...styles.link, background: 'none', border: 'none', cursor: 'pointer', marginTop: '12px', fontSize: '14px', textAlign: 'center', width: '100%' }}
+            >
+              ← Usar otro correo
+            </button>
+          </div>
+        ) : (
+          <>
+            <p style={styles.subtitle}>
+              Introduce el correo electrónico con el que realizaste la compra para acceder a tu contenido.
+            </p>
+            <form onSubmit={handleSubmit} style={styles.form}>
+              <div style={styles.inputWrap}>
+                <svg style={styles.inputIcon} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <input
+                  id="email-input"
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError('');
+                  }}
+                  placeholder="tu@correo.com"
+                  style={styles.input}
+                  autoComplete="email"
+                  disabled={loading}
+                  required
+                />
+              </div>
+
+              {error && (
+                <div style={styles.errorBox}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0 }}>
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="8" x2="12" y2="12" />
+                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
+                  <span>{error}</span>
+                </div>
+              )}
+
+              <button
+                id="verify-email-btn"
+                type="submit"
+                style={{
+                  ...styles.button,
+                  opacity: loading ? 0.7 : 1,
+                  cursor: loading ? 'not-allowed' : 'pointer',
+                }}
+                disabled={loading}
+              >
+                {loading ? (
+                  <span style={styles.loadingRow}>
+                    <span style={styles.btnSpinner} />
+                    Verificando...
+                  </span>
+                ) : (
+                  'Acceder a mi Guía →'
+                )}
+              </button>
+            </form>
+          </>
+        )}
 
         <p style={styles.footer}>
           ¿Problemas? Escríbenos a{' '}
@@ -154,7 +229,6 @@ export default function GuiaVintedPage() {
           </a>
         </p>
       </div>
-
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
@@ -334,15 +408,5 @@ const styles: Record<string, React.CSSProperties> = {
     borderTopColor: '#f59e0b',
     borderRadius: '50%',
     animation: 'spin 0.7s linear infinite',
-  },
-  pdfContainer: {
-    position: 'fixed',
-    inset: 0,
-    background: '#09090b',
-  },
-  iframe: {
-    width: '100%',
-    height: '100%',
-    border: 'none',
   },
 };
