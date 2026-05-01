@@ -132,7 +132,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} scroll-smooth`}>
+    <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} scroll-smooth`} suppressHydrationWarning>
       <body className="font-sans antialiased bg-zinc-950 text-zinc-50 relative overflow-x-hidden">
 
         {/* PWA Service Worker + Permisos de Notificación (Desactivado por petición) */}

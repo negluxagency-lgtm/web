@@ -160,6 +160,11 @@ const VintedHeader: React.FC<VintedHeaderProps> = () => {
                 )}
               </div>
 
+              {/* Tickets */}
+              <Link href="/tickets" style={{ background: '#1a1a1a', color: '#fff', border: 'none', borderRadius: 4, padding: '6px 10px', fontWeight: 400, fontSize: 13, cursor: 'pointer', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                🎫 Tickets
+              </Link>
+
               {/* Vender ahora */}
               <button onClick={() => window.location.href = 'https://www.vinted.es/items/new'} style={{ background: '#007782', color: '#fff', border: 'none', borderRadius: 4, padding: '6px 10px', fontWeight: 400, fontSize: 13, cursor: 'pointer' }}>
                 Vender ahora

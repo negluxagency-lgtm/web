@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ShoppingBag, Star, ShieldCheck, Zap, ArrowRight, CheckCircle2, TrendingUp, Crown, Check, AlertTriangle } from 'lucide-react';
 import { Metadata } from 'next';
 
@@ -33,19 +34,27 @@ const VintedPage = () => {
               <span className="text-white">Nelux</span><span className="text-amber-500">Resell</span>
             </span>
           </div>
-          <a
-            href="#pricing"
-            className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-zinc-950 px-6 py-2.5 rounded-full font-black transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)]"
-          >
-            Ver Opciones
-            <ArrowRight className="w-4 h-4" />
-          </a>
-          <a
-            href="#pricing"
-            className="flex sm:hidden items-center gap-1 bg-gradient-to-r from-amber-400 to-amber-600 text-zinc-950 px-4 py-1.5 rounded-full font-black text-xs shadow-[0_0_15px_rgba(245,158,11,0.4)]"
-          >
-            OPCIONES
-          </a>
+          <div className="flex items-center gap-3">
+            <Link
+              href="/tickets"
+              className="hidden sm:flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 px-5 py-2.5 rounded-full font-semibold text-sm transition-all duration-300 border border-white/10"
+            >
+              🎫 Tickets
+            </Link>
+            <a
+              href="#pricing"
+              className="hidden sm:flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-zinc-950 px-6 py-2.5 rounded-full font-black transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(245,158,11,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.5)]"
+            >
+              Ver Opciones
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="#pricing"
+              className="flex sm:hidden items-center gap-1 bg-gradient-to-r from-amber-400 to-amber-600 text-zinc-950 px-4 py-1.5 rounded-full font-black text-xs shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+            >
+              OPCIONES
+            </a>
+          </div>
         </div>
       </nav>
 
