@@ -158,9 +158,9 @@ async function buildHarrods(date: string, item: string, total: number): Promise<
   // Crop page to content
   const usedH = d.cur + MARGIN;
   page.setSize(PAGE_W, usedH);
-  // Shift all content up (pdf-lib origin is bottom-left)
+  // Shift all content down (pdf-lib origin is bottom-left)
   const shift = ph - usedH;
-  page.translateContent(0, shift);
+  page.translateContent(0, -shift);
 
   return doc.save();
 }
@@ -220,7 +220,7 @@ async function buildLafayette(date: string, item: string, total: number): Promis
 
   const usedH = d.cur + MARGIN;
   page.setSize(PAGE_W, usedH);
-  page.translateContent(0, ph - usedH);
+  page.translateContent(0, -(ph - usedH));
   return doc.save();
 }
 
@@ -289,7 +289,7 @@ async function buildLV(date: string, item: string, total: number): Promise<Uint8
 
   const usedH = d.cur + MARGIN;
   page.setSize(PAGE_W, usedH);
-  page.translateContent(0, ph - usedH);
+  page.translateContent(0, -(ph - usedH));
   return doc.save();
 }
 
