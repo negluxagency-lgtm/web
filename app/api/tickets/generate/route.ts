@@ -284,8 +284,8 @@ async function generateLafayette(date: string, item: string, price: number): Pro
     console.error("Lafayette barcode error:", e);
   }
 
-  drawText('6746531687496', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('RCS Paris 572 062 594 Cap : 217 404 572', 0, y, 7, courier, 'center');
+  drawTextAt('6746531687496', curY, 8); curY += 4 + 2;
+  drawTextAt('RCS Paris 572 062 594 Cap : 217 404 572', curY, 7);
 
   return doc.save();
 }
