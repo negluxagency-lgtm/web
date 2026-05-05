@@ -178,24 +178,22 @@ async function generateLafayette(date: string, item: string, price: number): Pro
   const courier = await doc.embedFont(StandardFonts.Courier);
   const courierBold = await doc.embedFont(StandardFonts.CourierBold);
   const black = rgb(0, 0, 0);
+  const margin = 5 * MM;
 
-  let curY = 0; // Millimeters from top margin (5mm)
+  // y is in PDF points, starts near top and decreases
+  let y = PAGE_H - 5 * MM;
 
-  const getY = (yMm: number) => PAGE_H - (5 * MM + yMm * MM);
-
-  const drawTextAt = (text: string, yMm: number, size: number, font = courier, align: 'center' | 'left' | 'right' = 'center') => {
+  const drawText = (text: string, yy: number, size: number, font = courier, align: 'center' | 'left' | 'right' = 'center') => {
     const w = font.widthOfTextAtSize(text, size);
-    let x = 5 * MM;
+    let x = margin;
     if (align === 'center') x = (PAGE_W - w) / 2;
-    if (align === 'right') x = PAGE_W - 5 * MM - w;
-    page.drawText(text, { x, y: getY(yMm), size, font, color: black });
+    if (align === 'right') x = PAGE_W - margin - w;
+    page.drawText(text, { x, y: yy, size, font, color: black });
   };
 
-  const drawDashes = (yMm: number) => {
-    drawTextAt("-".repeat(38), yMm, 8, courier, 'center');
-  };
+  const drawDashes = (yy: number) => drawText('-'.repeat(38), yy, 8);
 
-  // Logo
+  // ── LOGO ────────────────────────────────────────────────────────────────────
   let logoEmbedded = null;
   try {
     const logoPath = path.join(process.cwd(), 'public', 'Galeries-Lafayette-logo.png');
@@ -208,65 +206,61 @@ async function generateLafayette(date: string, item: string, price: number): Pro
   if (logoEmbedded) {
     const logoW = 60 * MM;
     const logoH = (logoEmbedded.height / logoEmbedded.width) * logoW;
-    page.drawImage(logoEmbedded, { x: 10 * MM, y: getY(2 + logoH), width: logoW, height: logoH });
-    curY = 40; 
+    page.drawImage(logoEmbedded, { x: 10 * MM, y: y - logoH, width: logoW, height: logoH });
+    y -= logoH + 8 * MM; 
   } else {
-    curY = 5;
-    drawTextAt('Galeries Lafayette', curY, 11, courierBold);
-    curY += 6;
+    drawText('Galeries Lafayette', y, 11, courierBold);
+    y -= 7 * MM;
   }
 
-  drawTextAt('GALERIESLAFAYETTE.COM', curY, 7); curY += 4 + 3;
+  // ── HEADER ───────────────────────────────────────────────────────────────────
+  drawText('GALERIESLAFAYETTE.COM', y, 7); y -= 7 * MM;
 
-  drawTextAt(`Date : ${date}  10:47  Nb Article:1`, curY, 8); curY += 4;
-  drawTextAt('Caisse : 003     Ticket : 32584575', curY, 8); curY += 4;
-  drawTextAt('Caissier : 025874', curY, 8); curY += 4 + 2;
+  drawText(`Date : ${date}  10:47  Nb Article:1`, y, 8); y -= 4 * MM;
+  drawText('Caisse : 003     Ticket : 32584575', y, 8); y -= 4 * MM;
+  drawText('Caissier : 025874', y, 8); y -= 6 * MM;
 
-  drawDashes(curY); curY += 3;
+  drawDashes(y); y -= 7 * MM;
 
-  // Items
-  drawTextAt('Article                Prix EUR', curY, 8, courierBold); curY += 4;
+  // ── ITEMS ────────────────────────────────────────────────────────────────────
+  drawText('Article                Prix EUR', y, 8, courierBold); y -= 4 * MM;
   
   const itemLine = `3SN118YJP_H069 ${item} * ${fmtNum(total)}`;
-  const itemWords = itemLine.split(' ');
+  const words = itemLine.split(' ');
   let line = '';
-  for (const word of itemWords) {
+  for (const word of words) {
     if ((line + word).length > 35) {
-      drawTextAt(line.trim(), curY, 8); curY += 4;
+      drawText(line.trim(), y, 8); y -= 4 * MM;
       line = '';
     }
     line += word + ' ';
   }
-  if (line.trim()) {
-    drawTextAt(line.trim(), curY, 8); curY += 4;
-  }
-  curY += 2;
-  drawDashes(curY); curY += 3;
+  if (line.trim()) { drawText(line.trim(), y, 8); y -= 4 * MM; }
+  y -= 5 * MM;
+  drawDashes(y); y -= 7 * MM;
 
-  // Totals
-  drawTextAt(`Total             ${fmtNum(total)} EUR`, curY, 9); curY += 5;
-  drawTextAt(`Carte bancaire         ${fmtNum(total)} EUR`, curY, 8); curY += 4;
-  drawTextAt('Visa Debit ****9088', curY, 8); curY += 4 + 3;
+  // ── TOTALS ───────────────────────────────────────────────────────────────────
+  drawText(`Total             ${fmtNum(total)} EUR`, y, 9); y -= 5 * MM;
+  drawText(`Carte bancaire         ${fmtNum(total)} EUR`, y, 8); y -= 4 * MM;
+  drawText('Visa Debit ****9088', y, 8); y -= 7 * MM;
 
-  drawTextAt('Taux TVA      Montant H.T.      T.V.A', curY, 7); curY += 3;
-  drawTextAt(`20 %          ${fmtNum(subtotal)}            ${fmtNum(tax)}`, curY, 7); curY += 3 + 4;
+  drawText('Taux TVA      Montant H.T.      T.V.A', y, 7); y -= 3 * MM;
+  drawText(`20 %          ${fmtNum(subtotal)}            ${fmtNum(tax)}`, y, 7); y -= 11 * MM;
 
-  // Footer
-  drawTextAt('MERCI', curY, 13, courierBold); curY += 7 + 1;
-  drawTextAt('A bientot en magasin et', curY, 7); curY += 3;
-  drawTextAt('sur galerieslafayette.com', curY, 7); curY += 3 + 3;
+  // ── FOOTER ───────────────────────────────────────────────────────────────────
+  drawText('MERCI', y, 13, courierBold); y -= 12 * MM;
+  drawText('A bientot en magasin et', y, 7); y -= 3 * MM;
+  drawText('sur galerieslafayette.com', y, 7); y -= 6 * MM;
 
-  drawTextAt('GL HAUSSMANN', curY, 7, courierBold); curY += 3;
-  drawTextAt('40 bld Haussmann', curY, 7); curY += 3;
-  drawTextAt('75446 PARIS CEDEX 09', curY, 7); curY += 3;
-  drawTextAt('Tel : 01.42.82.34.56', curY, 7); curY += 3 + 2;
+  drawText('GL HAUSSMANN', y, 7, courierBold); y -= 3 * MM;
+  drawText('40 bld Haussmann', y, 7); y -= 3 * MM;
+  drawText('75446 PARIS CEDEX 09', y, 7); y -= 3 * MM;
+  drawText('Tel : 01.42.82.34.56', y, 7); y -= 5 * MM;
 
-  for (const hLine of ["Tous les Jours de 9h30 a 20h30", "et les dimanches de 11h a 20h"]) {
-    drawTextAt(hLine, curY, 7); curY += 3;
-  }
-  curY += 10; 
+  drawText("Tous les Jours de 9h30 a 20h30", y, 7); y -= 3 * MM;
+  drawText("et les dimanches de 11h a 20h", y, 7); y -= 14 * MM; 
 
-  // Barcode
+  // ── BARCODE ──────────────────────────────────────────────────────────────────
   try {
     const barcodeBuffer = await bwipjs.toBuffer({
       bcid: 'code128', 
@@ -278,14 +272,14 @@ async function generateLafayette(date: string, item: string, price: number): Pro
     const barcodeImg = await doc.embedPng(barcodeBuffer);
     const bW = 65 * MM;
     const bH = 15 * MM;
-    page.drawImage(barcodeImg, { x: (PAGE_W - bW) / 2, y: getY(curY + bH), width: bW, height: bH });
-    curY += bH + 2;
+    page.drawImage(barcodeImg, { x: (PAGE_W - bW) / 2, y: y - bH, width: bW, height: bH });
+    y -= bH + 6 * MM;
   } catch (e) {
     console.error("Lafayette barcode error:", e);
   }
 
-  drawTextAt('6746531687496', curY, 8); curY += 4 + 2;
-  drawTextAt('RCS Paris 572 062 594 Cap : 217 404 572', curY, 7);
+  drawText('6746531687496', y, 7); y -= 4 * MM;
+  drawText('RCS Paris 572 062 594 Cap : 217 404 572', y, 6);
 
   return doc.save();
 }
