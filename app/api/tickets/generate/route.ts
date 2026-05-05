@@ -225,7 +225,7 @@ async function generateLafayette(date: string, item: string, price: number): Pro
   // ── ITEMS ────────────────────────────────────────────────────────────────────
   drawText('Article                Prix EUR', y, 8, courierBold); y -= 4 * MM;
   
-  const itemLine = `3SN118YJP_H069 ${item} * ${fmtNum(total)}`;
+  const itemLine = `${item} * ${fmtNum(total)}`;
   const words = itemLine.split(' ');
   let line = '';
   for (const word of words) {
