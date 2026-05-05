@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { PDFDocument, rgb, StandardFonts } from 'pdf-lib';
 import fs from 'fs';
 import path from 'path';
+// @ts-ignore
+import bwipjs from 'bwip-js/node';
 
 // ─── helpers ──────────────────────────────────────────────────────────────────
 
@@ -42,70 +44,69 @@ async function generateHarrods(date: string, item: string, price: number): Promi
   const margin = 5 * MM;
   const usableW = PAGE_W - margin * 2;
 
-  let y = PAGE_H - 8 * MM;
+  let y = PAGE_H;
 
   const drawText = (text: string, x: number, yy: number, size: number, font = courier, align: 'left' | 'center' | 'right' = 'left') => {
     const w = font.widthOfTextAtSize(text, size);
     let drawX = x;
-    if (align === 'center') drawX = margin + (usableW - w) / 2;
-    if (align === 'right') drawX = margin + usableW - w;
+    if (align === 'center') drawX = (PAGE_W - w) / 2;
+    if (align === 'right') drawX = PAGE_W - margin - w;
     page.drawText(text, { x: drawX, y: yy, size, font, color: black });
   };
 
-  const drawLine = (yy: number, dashed = false) => {
-    if (!dashed) {
-      page.drawLine({ start: { x: margin, y: yy }, end: { x: PAGE_W - margin, y: yy }, thickness: 0.5, color: black });
-    }
+  const drawLine = (yy: number) => {
+    drawText("-".repeat(40), 0, yy, 8, courier, 'center');
   };
 
   // Logo / header
   if (logoEmbedded) {
     const logoW = 40 * MM;
     const logoH = (logoEmbedded.height / logoEmbedded.width) * logoW;
-    page.drawImage(logoEmbedded, { x: (PAGE_W - logoW) / 2, y: y - logoH, width: logoW, height: logoH });
-    y -= logoH + 6 * MM;
+    page.drawImage(logoEmbedded, { x: (PAGE_W - logoW) / 2, y: PAGE_H - (5 * MM + logoH), width: logoW, height: logoH });
+    y = PAGE_H - 30 * MM;
   } else {
-    drawText('HARRODS', 0, y, 10, courierBold, 'center');
+    y -= 10 * MM;
+    drawText('HARRODS', 0, y, 12, courierBold, 'center');
     y -= 6 * MM;
   }
 
-  drawText('87-135 Brompton Road', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Knightsbridge, London SW1X 7XL', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Tel: +44 (0)20 7730 1234', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('VAT Number: 629273423', 0, y, 7, courier, 'center'); y -= 5 * MM;
+  drawText('87-135 Brompton Road', 0, y, 8, courier, 'center'); y -= 3 * MM;
+  drawText('Knightsbridge, London SW1X 7XL', 0, y, 8, courier, 'center'); y -= 3 * MM;
+  drawText('Tel: +44 (0)20 7730 1234', 0, y, 8, courier, 'center'); y -= 3 * MM;
+  drawText('VAT Number: 629273423', 0, y, 8, courier, 'center'); y -= 5 * MM;
 
-  drawText('CUSTOMER COPY', 0, y, 9, courierBold, 'center'); y -= 5 * MM;
-  drawLine(y); y -= 4 * MM;
+  drawText('CUSTOMER COPY', 0, y, 10, courierBold, 'center'); y -= 5 * MM;
+  drawLine(y); y -= 3 * MM;
 
   // Transaction
-  drawText(`Date: ${date}  Time: 14:32`, margin, y, 7); y -= 4 * MM;
-  drawText('Till: 042  Cashier: 1055 - J. Smith', margin, y, 7); y -= 4 * MM;
-  drawText('Receipt: 83749201', margin, y, 7); y -= 5 * MM;
-  drawLine(y); y -= 4 * MM;
+  drawText(`Date: ${date}  Time: 14:32`, margin, y, 8); y -= 3 * MM;
+  drawText('Till: 042  Cashier: 1055 - J. Smith', margin, y, 8); y -= 3 * MM;
+  drawText('Receipt: 83749201', margin, y, 8); y -= 2 * MM;
+  drawLine(y); y -= 3 * MM;
 
   // Items header
-  drawText('Item', margin, y, 7, courierBold);
-  drawText('Qty/£', 0, y, 7, courierBold, 'right');
+  drawText('Item', margin, y, 8, courierBold);
+  drawText('Qty/£', 0, y, 8, courierBold, 'right');
   y -= 4 * MM;
 
   // Item
-  drawText(item, margin, y, 7);
-  drawText(`£${fmtNum(total)}`, 0, y, 7, courier, 'right');
+  drawText(item, margin, y, 8);
+  drawText(`£${fmtNum(total)}`, 0, y, 8, courier, 'right');
   y -= 5 * MM;
 
-  drawLine(y); y -= 4 * MM;
+  drawLine(y); y -= 3 * MM;
 
   // Totals
-  drawText('SUBTOTAL', margin, y, 7);
-  drawText(`£${fmtNum(subtotal)}`, 0, y, 7, courier, 'right'); y -= 4 * MM;
-  drawText('VAT (included)', margin, y, 7);
-  drawText(`£${fmtNum(tax)}`, 0, y, 7, courier, 'right'); y -= 5 * MM;
+  drawText('SUBTOTAL', margin, y, 8);
+  drawText(`£${fmtNum(subtotal)}`, 0, y, 8, courier, 'right'); y -= 4 * MM;
+  drawText('VAT (included)', margin, y, 8);
+  drawText(`£${fmtNum(tax)}`, 0, y, 8, courier, 'right'); y -= 5 * MM;
 
-  drawText('TOTAL', margin, y, 9, courierBold);
-  drawText(`£${fmtNum(total)}`, 0, y, 9, courierBold, 'right'); y -= 5 * MM;
+  drawText('TOTAL', margin, y, 10, courierBold);
+  drawText(`£${fmtNum(total)}`, 0, y, 10, courierBold, 'right'); y -= 5 * MM;
 
-  drawText('Visa Debit Tendered', margin, y, 7);
-  drawText(`£${fmtNum(total)}`, 0, y, 7, courier, 'right'); y -= 5 * MM;
+  drawText('Visa Debit Tendered', margin, y, 8);
+  drawText(`£${fmtNum(total)}`, 0, y, 8, courier, 'right'); y -= 5 * MM;
 
   // Card details
   const cardDetails = [
@@ -119,19 +120,37 @@ async function generateHarrods(date: string, item: string, price: number): Promi
     ['Cryptogram', '40/1A660B845CB0FFC3'],
   ];
   for (const [k, v] of cardDetails) {
-    drawText(`${k.padEnd(15)}: ${v}`, margin, y, 6); y -= 3.5 * MM;
+    drawText(`${k.padEnd(15)}: ${v}`, margin, y, 7); y -= 3.5 * MM;
   }
   y -= 2 * MM;
 
-  drawText('Please debit my account as shown', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Cardholder PIN verified', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Please retain for your records', 0, y, 7, courier, 'center'); y -= 5 * MM;
+  drawText('Please debit my account as shown', 0, y, 8, courier, 'center'); y -= 4 * MM;
+  drawText('Cardholder PIN verified', 0, y, 8, courier, 'center'); y -= 4 * MM;
+  drawText('Please retain for your records', 0, y, 8, courier, 'center'); y -= 2 * MM;
 
-  page.drawLine({ start: { x: margin, y }, end: { x: PAGE_W - margin, y }, thickness: 0.8, color: black }); y -= 5 * MM;
+  drawText("=".repeat(40), 0, y, 8, courier, 'center'); y -= 6 * MM;
 
   // Footer
-  drawText('HARRODS REWARDS DETAILS', 0, y, 7, courierBold, 'center'); y -= 5 * MM;
-  drawText(`Rewards No.   *********2394`, margin, y, 7); y -= 5 * MM;
+  drawText('HARRODS REWARDS DETAILS', 0, y, 9, courierBold, 'center'); y -= 5 * MM;
+  drawText(`Rewards No.   *********2394`, margin, y, 8); y -= 3 * MM;
+
+  // Barcode
+  try {
+    const barcodeBuffer = await bwipjs.toBuffer({
+      bcid: 'code128',
+      text: '00000801342792191015244001',
+      scale: 3,
+      height: 10,
+      includetext: false,
+    });
+    const barcodeImg = await doc.embedPng(barcodeBuffer);
+    page.drawImage(barcodeImg, { x: (PAGE_W - 50 * MM) / 2, y: y - 10 * MM, width: 50 * MM, height: 10 * MM });
+    y -= 12 * MM;
+  } catch (e) {
+    console.error("Harrods barcode error:", e);
+  }
+
+  drawText('00000801342792191015244001', 0, y, 8, courier, 'center'); y -= 5 * MM;
 
   const footerMessages = [
     'Open Monday - Saturday until 9pm',
@@ -140,7 +159,7 @@ async function generateHarrods(date: string, item: string, price: number): Promi
     'and share your #HarrodsMoments',
   ];
   for (const msg of footerMessages) {
-    drawText(msg, 0, y, 6.5, courier, 'center'); y -= 3.5 * MM;
+    drawText(msg, 0, y, 7, courier, 'center'); y -= 3.5 * MM;
   }
 
   return doc.save();
@@ -162,14 +181,18 @@ async function generateLafayette(date: string, item: string, price: number): Pro
   const margin = 5 * MM;
   const usableW = PAGE_W - margin * 2;
 
-  let y = PAGE_H - 5 * MM;
+  let y = PAGE_H;
 
   const drawText = (text: string, x: number, yy: number, size: number, font = courier, align: 'left' | 'center' | 'right' = 'left') => {
     const w = font.widthOfTextAtSize(text, size);
     let drawX = x;
-    if (align === 'center') drawX = margin + (usableW - w) / 2;
-    if (align === 'right') drawX = margin + usableW - w;
+    if (align === 'center') drawX = (PAGE_W - w) / 2;
+    if (align === 'right') drawX = PAGE_W - margin - w;
     page.drawText(text, { x: drawX, y: yy, size, font, color: black });
+  };
+
+  const drawDashes = (yy: number) => {
+    drawText("-".repeat(38), 0, yy, 8, courier, 'center');
   };
 
   // Logo
@@ -185,50 +208,85 @@ async function generateLafayette(date: string, item: string, price: number): Pro
   if (logoEmbedded) {
     const logoW = 60 * MM;
     const logoH = (logoEmbedded.height / logoEmbedded.width) * logoW;
-    page.drawImage(logoEmbedded, { x: (PAGE_W - logoW) / 2, y: y - logoH, width: logoW, height: logoH });
-    y -= logoH + 8 * MM;
+    page.drawImage(logoEmbedded, { x: 10 * MM, y: PAGE_H - (2 * MM + logoH), width: logoW, height: logoH });
+    y = PAGE_H - 40 * MM; // ln(38) from y=2
   } else {
-    drawText('Galeries Lafayette', 0, y, 11, courierBold, 'center'); y -= 7 * MM;
+    y -= 10 * MM;
+    drawText('Galeries Lafayette', 0, y, 11, courierBold, 'center');
+    y -= 7 * MM;
   }
 
-  drawText('GALERIESLAFAYETTE.COM', 0, y, 7, courier, 'center'); y -= 5 * MM;
+  drawText('GALERIESLAFAYETTE.COM', 0, y, 7, courier, 'center'); y -= 4 * MM;
+  y -= 3 * MM;
 
-  // Transaction info
-  drawText(`Date : ${date}  10:47  Nb Article:1`, 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Caisse : 003     Ticket : 32584575', 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Caissier : 025874', 0, y, 7, courier, 'center'); y -= 5 * MM;
+  drawText(`Date : ${date}  10:47  Nb Article:1`, 0, y, 8, courier, 'center'); y -= 4 * MM;
+  drawText('Caisse : 003     Ticket : 32584575', 0, y, 8, courier, 'center'); y -= 4 * MM;
+  drawText('Caissier : 025874', 0, y, 8, courier, 'center'); y -= 2 * MM;
 
-  page.drawLine({ start: { x: margin, y }, end: { x: PAGE_W - margin, y }, thickness: 0.5, color: black }); y -= 4 * MM;
+  drawDashes(y); y -= 3 * MM;
 
-  // Items
-  drawText('Article                Prix EUR', 0, y, 7, courierBold, 'center'); y -= 4 * MM;
-  drawText(`3SN118YJP_H069 ${item} * ${fmtNum(total)}`, 0, y, 7, courier, 'center'); y -= 5 * MM;
+  drawText('Article                Prix EUR', 0, y, 8, courierBold, 'center'); y -= 4 * MM;
+  
+  const itemLine = `3SN118YJP_H069 ${item} * ${fmtNum(total)}`;
+  const itemWords = itemLine.split(' ');
+  let currentLine = '';
+  for (const word of itemWords) {
+    if ((currentLine + word).length > 35) {
+      drawText(currentLine.trim(), 0, y, 8, courier, 'center'); y -= 4 * MM;
+      currentLine = '';
+    }
+    currentLine += word + ' ';
+  }
+  if (currentLine.trim()) {
+    drawText(currentLine.trim(), 0, y, 8, courier, 'center'); y -= 4 * MM;
+  }
 
-  page.drawLine({ start: { x: margin, y }, end: { x: PAGE_W - margin, y }, thickness: 0.5, color: black }); y -= 4 * MM;
+  y -= 2 * MM;
+  drawDashes(y); y -= 3 * MM;
 
-  // Totals
-  drawText(`Total             ${fmtNum(total)} EUR`, 0, y, 8, courier, 'center'); y -= 4 * MM;
-  drawText(`Carte bancaire         ${fmtNum(total)} EUR`, 0, y, 7, courier, 'center'); y -= 4 * MM;
-  drawText('Visa Debit ****9088', 0, y, 7, courier, 'center'); y -= 5 * MM;
+  drawText(`Total             ${fmtNum(total)} EUR`, 0, y, 9, courier, 'center'); y -= 5 * MM;
+  drawText(`Carte bancaire         ${fmtNum(total)} EUR`, 0, y, 8, courier, 'center'); y -= 4 * MM;
+  drawText('Visa Debit ****9088', 0, y, 8, courier, 'center'); y -= 3 * MM;
 
-  // TVA table
-  drawText('Taux TVA      Montant H.T.      T.V.A', 0, y, 6.5, courier, 'center'); y -= 3.5 * MM;
-  drawText(`20 %          ${fmtNum(subtotal)}            ${fmtNum(tax)}`, 0, y, 6.5, courier, 'center'); y -= 6 * MM;
+  drawText('Taux TVA      Montant H.T.      T.V.A', 0, y, 7, courier, 'center'); y -= 3 * MM;
+  drawText(`20 %          ${fmtNum(subtotal)}            ${fmtNum(tax)}`, 0, y, 7, courier, 'center'); y -= 4 * MM;
 
-  // Footer
-  drawText('MERCI', 0, y, 12, courierBold, 'center'); y -= 8 * MM;
-  drawText('A bientot en magasin et', 0, y, 6.5, courier, 'center'); y -= 3.5 * MM;
-  drawText('sur galerieslafayette.com', 0, y, 6.5, courier, 'center'); y -= 5 * MM;
+  y -= 4 * MM;
+  drawText('MERCI', 0, y, 13, courierBold, 'center'); y -= 7 * MM;
+  y -= 1 * MM;
 
-  drawText('GL HAUSSMANN', 0, y, 6.5, courierBold, 'center'); y -= 3.5 * MM;
-  drawText('40 bld Haussmann', 0, y, 6.5, courier, 'center'); y -= 3.5 * MM;
-  drawText('75446 PARIS CEDEX 09', 0, y, 6.5, courier, 'center'); y -= 3.5 * MM;
-  drawText('Tel : 01.42.82.34.56', 0, y, 6.5, courier, 'center'); y -= 4 * MM;
-  drawText('Tous les Jours de 9h30 a 20h30', 0, y, 6.5, courier, 'center'); y -= 3.5 * MM;
-  drawText('et les dimanches de 11h a 20h', 0, y, 6.5, courier, 'center'); y -= 6 * MM;
+  drawText('A bientot en magasin et', 0, y, 7, courier, 'center'); y -= 3 * MM;
+  drawText('sur galerieslafayette.com', 0, y, 7, courier, 'center'); y -= 3 * MM;
+  y -= 3 * MM;
 
-  drawText('6746531687496', 0, y, 6.5, courier, 'center'); y -= 4 * MM;
-  drawText('RCS Paris 572 062 594 Cap : 217 404 572', 0, y, 6, courier, 'center');
+  drawText('GL HAUSSMANN', 0, y, 7, courierBold, 'center'); y -= 3 * MM;
+  drawText('40 bld Haussmann', 0, y, 7, courier, 'center'); y -= 3 * MM;
+  drawText('75446 PARIS CEDEX 09', 0, y, 7, courier, 'center'); y -= 3 * MM;
+  drawText('Tel : 01.42.82.34.56', 0, y, 7, courier, 'center'); y -= 2 * MM;
+
+  for (const line of ["Tous les Jours de 9h30 a 20h30", "et les dimanches de 11h a 20h"]) {
+    drawText(line, 0, y, 7, courier, 'center'); y -= 3 * MM;
+  }
+  y -= 4 * MM;
+
+  // Barcode
+  try {
+    const barcodeBuffer = await bwipjs.toBuffer({
+      bcid: 'ean13',
+      text: '674653168749', // 12 digits, check digit will be calculated
+      scale: 3,
+      height: 12,
+      includetext: false,
+    });
+    const barcodeImg = await doc.embedPng(barcodeBuffer);
+    page.drawImage(barcodeImg, { x: (PAGE_W - 65 * MM) / 2, y: y - 12 * MM, width: 65 * MM, height: 12 * MM });
+    y -= 14 * MM;
+  } catch (e) {
+    console.error("Lafayette barcode error:", e);
+  }
+
+  drawText('6746531687496', 0, y, 7, courier, 'center'); y -= 4 * MM;
+  drawText('RCS Paris 572 062 594 Cap : 217 404 572', 0, y, 7, courier, 'center');
 
   return doc.save();
 }
