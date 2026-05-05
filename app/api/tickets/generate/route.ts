@@ -303,7 +303,6 @@ async function generateLV(date: string, item: string, price: number): Promise<Ui
 
   // Item row
   drawText(item, margin, y, 7); y -= 4 * MM;
-  drawText('M45779', margin, y, 7);
   drawText('1', margin + 30 * MM, y, 7);
   drawText(fmtNum(total), margin + 38 * MM, y, 7);
   drawText(fmtNum(total), 0, y, 7, courier, 'right'); y -= 4 * MM;
@@ -354,12 +353,12 @@ async function generateLV(date: string, item: string, price: number): Promise<Ui
     let line = '';
     for (const word of words) {
       if ((line + word).length > 38) {
-        drawText(line.trim(), margin, y, 6); y -= 3.5 * MM;
+        drawText(line.trim(), 0, y, 6, courier, 'center'); y -= 3.5 * MM;
         line = '';
       }
       line += word + ' ';
     }
-    if (line.trim()) { drawText(line.trim(), margin, y, 6); y -= 3.5 * MM; }
+    if (line.trim()) { drawText(line.trim(), 0, y, 6, courier, 'center'); y -= 3.5 * MM; }
     y -= 2 * MM;
   }
 
