@@ -213,9 +213,7 @@ export default function TicketsPage() {
     setError('');
 
     try {
-      const endpoint = process.env.NODE_ENV === 'production' 
-        ? '/api/generate' 
-        : '/api/tickets/generate';
+      const endpoint = '/api/tickets/generate';
 
       const response = await fetch(endpoint, {
         method: 'POST',
