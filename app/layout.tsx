@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Great_Vibes, Manrope } from "next/font/google";
+import { Outfit, Great_Vibes, Manrope, Inter } from "next/font/google";
 import "./globals.css";
 import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -31,6 +31,12 @@ const manrope = Manrope({
   display: "swap",
 });
 
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
 // --- Configuración SEO (Metaetiquetas) ---
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nelux.es';
@@ -40,16 +46,16 @@ export const metadata: Metadata = {
 
   // 1. Identidad Principal
   title: {
-    template: '%s | Nelux AI',
-    default: 'Nelux AI - Ingeniería de Software e Inteligencia Artificial',
+    template: '%s | Nelux Webs',
+    default: 'Nelux Webs - Páginas web para negocios locales de Zaragoza',
   },
-  description: 'Desarrollo de Software a medida e Inteligencia Artificial. Transformamos ideas en productos digitales premium con tecnología de vanguardia (Next.js, Supabase, AI).',
-  keywords: ['desarrollo software', 'inteligencia artificial', 'nextjs', 'supabase', 'agencia digital', 'desarrollo web', 'consultora tecnológica', 'zaragoza', 'automatización'],
+  description: 'Hacemos webs modernas y profesionales para negocios locales de Zaragoza desde 200€. Entrega en 7 días, diseño personalizado y soporte incluido. Estudiantes de Ingeniería Informática de la UNIZAR.',
+  keywords: ['páginas web zaragoza', 'diseño web zaragoza', 'web barata zaragoza', 'web negocio local zaragoza', 'crear página web zaragoza', 'desarrollo web estudiantes', 'web profesional zaragoza', 'nelux webs'],
 
   // 2. Autoría
-  authors: [{ name: 'Nelux AI', url: BASE_URL }],
-  creator: 'Nelux AI',
-  publisher: 'Nelux AI',
+  authors: [{ name: 'Nelux Webs', url: BASE_URL }],
+  creator: 'Nelux Webs',
+  publisher: 'Nelux Webs',
 
   // 3. Control de Robots (Técnico)
   robots: {
@@ -71,18 +77,18 @@ export const metadata: Metadata = {
 
   // 5. Open Graph (Facebook, LinkedIn, WhatsApp)
   openGraph: {
-    title: 'Nelux AI - Ingeniería de Software e Inteligencia Artificial',
-    description: 'Transformamos empresas mediante software a medida e Inteligencia Artificial.',
+    title: 'Nelux Webs - Páginas web para negocios locales de Zaragoza',
+    description: 'Webs modernas desde 200€ para negocios locales de Zaragoza. Diseño personalizado, entrega en 7 días y soporte continuo.',
     url: BASE_URL,
-    siteName: 'Nelux AI',
+    siteName: 'Nelux Webs',
     locale: 'es_ES',
     type: 'website',
     images: [
       {
-        url: '/default-blog.jpg', // Tu imagen "Glassmorphism" subida a /public
+        url: '/default-blog.jpg',
         width: 1200,
         height: 630,
-        alt: 'Nelux AI - Consultoría de Software Premium',
+        alt: 'Nelux Webs - Páginas web para negocios locales de Zaragoza',
       },
     ],
   },
@@ -90,10 +96,10 @@ export const metadata: Metadata = {
   // 6. Twitter / X Cards
   twitter: {
     card: 'summary_large_image',
-    title: 'Nelux AI',
-    description: 'Ingeniería de Software e IA de alto nivel.',
-    images: ['/default-blog.jpg'], // Misma imagen optimizada
-    creator: '@nelux_ai', // (Opcional)
+    title: 'Nelux Webs',
+    description: 'Webs profesionales para negocios locales de Zaragoza desde 200€.',
+    images: ['/default-blog.jpg'],
+    creator: '@neluxwebs',
   },
 
   // 7. Verificación (Google Search Console)
@@ -112,7 +118,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Vinted',
+    title: 'Nelux Webs',
     startupImage: '/Logo_ios.png',
   },
 
@@ -132,35 +138,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} scroll-smooth`} suppressHydrationWarning>
-      <body className="font-sans antialiased bg-zinc-950 text-zinc-50 relative overflow-x-hidden">
+    <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+      <body className="font-sans antialiased bg-black text-zinc-50 overflow-x-hidden">
 
-        {/* PWA Service Worker + Permisos de Notificación (Desactivado por petición) */}
-        {/* <PwaRegistrar /> */}
-
-        {/* Gestor de scroll suave */}
+        {/* ScrollReveal */}
         <ScrollReveal />
 
-        {/* --- Fondos Ambientales (Gradients Flotantes) --- */}
-        <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none select-none">
-          {/* Azul Tecnológico (Top Left) */}
-          <div
-            className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen animate-pulse"
-            style={{ animationDuration: '4s' }}
-          />
-          {/* Ámbar Cálido/Premium (Top Right) */}
-          <div
-            className="absolute top-[20%] right-[-5%] w-[30%] h-[40%] bg-amber-500/10 blur-[120px] rounded-full mix-blend-screen animate-pulse"
-            style={{ animationDuration: '7s' }}
-          />
-          {/* Púrpura Profundo (Bottom Left) */}
-          <div
-            className="absolute bottom-[-10%] left-[20%] w-[50%] h-[40%] bg-purple-600/10 blur-[150px] rounded-full mix-blend-screen animate-pulse"
-            style={{ animationDuration: '10s' }}
-          />
-        </div>
-
-        {/* Contenido de la página */}
         {children}
 
         {/* Google Analytics 4 (Optimizado para Core Web Vitals) */}

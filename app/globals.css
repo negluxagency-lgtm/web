@@ -3,6 +3,8 @@
 @theme {
   --font-sans: var(--font-outfit), "Outfit", sans-serif;
   --font-script: var(--font-great-vibes), "Great Vibes", cursive;
+  --font-inter: var(--font-inter), "Inter", sans-serif;
+  --font-manrope: var(--font-manrope), "Manrope", sans-serif;
   --color-amber-400: #fbbf24;
   --color-amber-500: #f59e0b;
   --color-amber-600: #d97706;
@@ -15,29 +17,95 @@
 }
 
 body {
-  background-color: var(--background);
+  @apply font-inter;
+  background-color: #000000;
   background-image:
-    radial-gradient(circle at 50% -10%, rgba(245, 158, 11, 0.25) 0%, rgba(9, 9, 11, 0) 60%),
-    radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.08) 0%, rgba(9, 9, 11, 0) 50%),
-    radial-gradient(circle at 100% 100%, rgba(245, 158, 11, 0.08) 0%, rgba(9, 9, 11, 0) 50%),
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    radial-gradient(circle at 15% 8%,  rgba(254,154,0,0.09) 0%, transparent 38%),
+    radial-gradient(circle at 85% 12%, rgba(254,154,0,0.07) 0%, transparent 35%),
+    radial-gradient(circle at 8%  50%, rgba(254,154,0,0.07) 0%, transparent 40%),
+    radial-gradient(circle at 92% 58%, rgba(254,154,0,0.07) 0%, transparent 38%),
+    radial-gradient(circle at 15% 88%, rgba(254,154,0,0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 92%, rgba(254,154,0,0.08) 0%, transparent 38%);
+  background-attachment: fixed;
+  background-size: 100% 100%;
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
+/* ═══ ANIMACIONES MODERNAS ═══════════════════════════════ */
 
-  100% {
-    transform: translateX(-50%);
-  }
+/* Entrada: fade + slide up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* Entrada: slide desde arriba (Navbar) */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-slide-down {
+  animation: slideDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Escala suave (badges, chips) */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Flotación lenta orbe A */
+@keyframes floatA {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(3%, 4%) scale(1.04); }
+  66%       { transform: translate(-2%, 2%) scale(0.97); }
+}
+.animate-float-a { animation: floatA 14s ease-in-out infinite; }
+
+/* Flotación lenta orbe B */
+@keyframes floatB {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-4%, -3%) scale(1.05); }
+  75%       { transform: translate(2%, -2%) scale(0.96); }
+}
+.animate-float-b { animation: floatB 18s ease-in-out infinite; }
+
+/* Shimmer (destellos en texto/líneas) */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, #fe9a00 0%, #fff5e0 40%, #fe9a00 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Delays escalonados */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+.delay-600 { animation-delay: 600ms; }
+.delay-700 { animation-delay: 700ms; }
+.delay-800 { animation-delay: 800ms; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 .animate-marquee {
   animation: marquee 40s linear infinite;
 }
@@ -82,4 +150,14 @@ body {
 
 .delay-500 {
   transition-delay: 500ms;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }

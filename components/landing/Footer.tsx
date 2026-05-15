@@ -1,63 +1,123 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Instagram, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="border-t border-zinc-900 pt-6 md:pt-20 pb-6 md:pb-10">
+        <footer className="border-t border-zinc-900 pt-12 md:pt-20 pb-8 md:pb-10">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 mb-6 md:mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-10 md:mb-16">
                     {/* Col 1: Brand & Mission */}
-                    <div className="flex flex-col gap-3 md:gap-6">
-                        <div className="flex items-center gap-2 md:gap-3">
-                            <Image
-                                src="/landing/Logo_nelux_v2.png"
-                                alt="Nelux AI Logo"
-                                width={50}
-                                height={50}
-                                className="w-6 h-6 md:w-10 md:h-10 object-contain"
-                            />
-                            <span className="text-base md:text-xl font-bold text-white tracking-tight">Nelux AI</span>
-                        </div>
-                        <p className="text-[10px] md:text-sm text-zinc-400 leading-relaxed max-w-xs">
-                            Ingeniería de software a medida para empresas que lideran el futuro a través de la Inteligencia Artificial.
+                    <div className="flex flex-col gap-4">
+                        {/* Logo */}
+                        <Link href="/" className="flex items-center gap-0 select-none w-fit">
+                            <span
+                                className="text-2xl font-black italic text-white leading-none"
+                                style={{ fontFamily: "var(--font-manrope)", letterSpacing: "-0.03em" }}
+                            >
+                                Nelux
+                            </span>
+                            <span
+                                className="text-2xl font-black italic leading-none"
+                                style={{ fontFamily: "var(--font-manrope)", color: "#fe9a00", letterSpacing: "-0.03em" }}
+                            >
+                                Webs
+                            </span>
+                        </Link>
+                        <p className="text-sm text-zinc-400 leading-relaxed max-w-xs">
+                            Webs modernas y profesionales para negocios locales de Zaragoza. Hechas por estudiantes de Ingeniería Informática de la UNIZAR.
                         </p>
+                        <div className="flex gap-3 mt-2">
+                            <a
+                                href="mailto:contacto@nelux.es"
+                                className="w-9 h-9 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-xl hover:border-[#fe9a00]/50 hover:text-[#fe9a00] text-zinc-400 transition-all"
+                                aria-label="Email"
+                            >
+                                <Mail className="w-4 h-4" />
+                            </a>
+                            <a
+                                href="https://wa.me/34623064127"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-9 h-9 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-xl hover:border-[#fe9a00]/50 hover:text-[#fe9a00] text-zinc-400 transition-all"
+                                aria-label="WhatsApp"
+                            >
+                                <MessageCircle className="w-4 h-4" />
+                            </a>
+                        </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
-                        {/* Col 2: Navigation Links */}
-                        <div className="flex flex-col gap-3 md:gap-6">
-                            <h4 className="text-zinc-50 font-bold text-[10px] md:text-sm uppercase tracking-wider">Navegación</h4>
-                            <ul className="flex flex-col gap-1.5 md:gap-3">
-                                <li><Link href="/" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Inicio</Link></li>
-                                <li><a href="https://app.nelux.es" target="_blank" rel="noopener noreferrer" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Nelux Barber</a></li>
-                                <li><Link href="#contacto" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Contacto</Link></li>
+                    {/* Col 2 & 3 */}
+                    <div className="grid grid-cols-2 gap-8 md:col-span-2">
+                        {/* Navegación */}
+                        <div className="flex flex-col gap-4">
+                            <h4 className="text-white font-bold text-xs uppercase tracking-wider">Navegación</h4>
+                            <ul className="flex flex-col gap-3">
+                                {[
+                                    { label: "Inicio", href: "/" },
+                                    { label: "Servicios", href: "/#servicios" },
+                                    { label: "Portfolio", href: "/#portfolio" },
+                                    { label: "Nosotros", href: "/#nosotros" },
+                                    { label: "FAQ", href: "/#faq" },
+                                    { label: "Contacto", href: "/#contacto" },
+                                ].map((l) => (
+                                    <li key={l.label}>
+                                        <Link
+                                            href={l.href}
+                                            className="text-sm text-zinc-400 hover:text-[#fe9a00] transition-colors"
+                                        >
+                                            {l.label}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
-                        {/* Col 3: Legal & Social */}
-                        <div className="flex flex-col gap-3 md:gap-6">
-                            <h4 className="text-zinc-50 font-bold text-[10px] md:text-sm uppercase tracking-wider">Legal & Social</h4>
-                            <ul className="flex flex-col gap-1.5 md:gap-3">
-                                <li><Link href="/aviso-legal" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Aviso Legal</Link></li>
-                                <li><Link href="/politica-de-privacidad" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Privacidad</Link></li>
-                                <li><Link href="/terminos-y-condiciones" className="text-[10px] md:text-sm text-zinc-400 hover:text-amber-500 transition-colors">Términos</Link></li>
+                        {/* Legal & Contacto */}
+                        <div className="flex flex-col gap-4">
+                            <h4 className="text-white font-bold text-xs uppercase tracking-wider">Legal & Contacto</h4>
+                            <ul className="flex flex-col gap-3">
+                                {[
+                                    { label: "Aviso Legal", href: "/aviso-legal" },
+                                    { label: "Privacidad", href: "/politica-de-privacidad" },
+                                    { label: "Términos", href: "/terminos-y-condiciones" },
+                                ].map((l) => (
+                                    <li key={l.label}>
+                                        <Link
+                                            href={l.href}
+                                            className="text-sm text-zinc-400 hover:text-[#fe9a00] transition-colors"
+                                        >
+                                            {l.label}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
-                            <div className="flex gap-2 md:gap-4 mt-1">
-                                <a href="https://instagram.com/nelux.ai" target="_blank" rel="noopener noreferrer" className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-lg md:rounded-xl hover:border-amber-500/50 hover:text-amber-500 transition-all">
-                                    <Instagram className="w-4 h-4 md:w-5 md:h-5" />
+                            <div className="mt-2 flex flex-col gap-2">
+                                <a
+                                    href="mailto:contacto@nelux.es"
+                                    className="text-sm text-zinc-400 hover:text-[#fe9a00] transition-colors"
+                                >
+                                    contacto@nelux.es
                                 </a>
-                                <a href="https://wa.me/34623064127" target="_blank" rel="noopener noreferrer" className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-lg md:rounded-xl hover:border-amber-500/50 hover:text-amber-500 transition-all">
-                                    <MessageCircle className="w-4 h-4 md:w-5 md:h-5" />
+                                <a
+                                    href="https://wa.me/34623064127"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-sm text-zinc-400 hover:text-[#fe9a00] transition-colors"
+                                >
+                                    +34 623 064 127
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div className="border-t border-zinc-900/50 pt-4 md:pt-10 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4">
-                    <p className="text-[10px] md:text-xs text-zinc-600">
-                        © 2026 Nelux AI. Sistemas de Inteligencia Propietaria.
+                {/* Bottom bar */}
+                <div className="border-t border-zinc-900/50 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
+                    <p className="text-xs text-zinc-600">
+                        © 2026 Nelux Webs · Alex, Joel & Pablo · Zaragoza, España
+                    </p>
+                    <p className="text-xs text-zinc-700">
+                        Estudiantes de Ingeniería Informática · UNIZAR
                     </p>
                 </div>
             </div>

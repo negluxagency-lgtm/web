@@ -15,6 +15,10 @@ const config: Config = {
                 script: ["var(--font-great-vibes)", "cursive"],
                 // Fuente para NeluxResell
                 manrope: ["var(--font-manrope)", "sans-serif"],
+                inter: ["var(--font-inter)", "sans-serif"],
+            },
+            screens: {
+                'xs': '480px',
             },
             colors: {
                 // Aseguramos tus colores

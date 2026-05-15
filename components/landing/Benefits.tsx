@@ -1,51 +1,89 @@
-import { ShieldCheck, Cpu, TrendingUp } from "lucide-react";
+import { Euro, Clock, RefreshCw, Shield, Smartphone, Star } from "lucide-react";
 
 const benefits = [
     {
-        icon: ShieldCheck,
-        title: "Control Total",
-        description: "Al ser software propietario, no dependes de terceros. Si tu negocio cambia mañana, tu software evoluciona contigo al instante."
+        icon: Euro,
+        title: "Precio de estudiante",
+        description: "Webs profesionales desde 200€. Sin costes ocultos. El pago en dos mitades: 50% al firmar, 50% al estar conforme."
     },
     {
-        icon: Cpu,
-        title: "IA sin Fricción",
-        description: "La Inteligencia Artificial no es un añadido; vive dentro de tu sistema. Accede a tus datos en tiempo real para tomar decisiones, no solo para responder dudas."
+        icon: Clock,
+        title: "Listo en 7 días",
+        description: "No esperarás meses. En una semana laborable tu web está funcionando y lista para recibir clientes."
     },
     {
-        icon: TrendingUp,
-        title: "Activo Empresarial",
-        description: "Dejas de 'alquilar' tecnología para empezar a construir un activo digital que aumenta la valoración de tu empresa."
+        icon: RefreshCw,
+        title: "Cambios gratis",
+        description: "¿Quieres ajustar algo? Te lo hacemos sin coste adicional. Tu web siempre estará como la quieres."
+    },
+    {
+        icon: Smartphone,
+        title: "Perfecta en móvil",
+        description: "Más del 70% de las visitas son desde el móvil. Tus clientes podrán ver tu web perfectamente desde cualquier dispositivo."
+    },
+    {
+        icon: Shield,
+        title: "Legal y con factura",
+        description: "Somos autónomos. Emitimos factura y puedes pagar con tarjeta, Bizum o transferencia. Todo en regla."
+    },
+    {
+        icon: Star,
+        title: "100% personalizada",
+        description: "Nada de plantillas genéricas. Programamos tu web desde cero con tus colores, logo y fotos. Única como tu negocio."
     }
 ];
 
 export function Benefits() {
     return (
-        <section id="beneficios" className="py-16 md:py-32 px-6 relative overflow-hidden">
-            {/* Glow decorativo de fondo */}
-            <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-amber-500/5 blur-[100px] rounded-full pointer-events-none" />
+        <section id="precios" className="py-20 md:py-32 px-6 relative overflow-hidden">
+            <div
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] rounded-full pointer-events-none"
+                style={{ background: "radial-gradient(ellipse, rgba(254,154,0,0.03) 0%, transparent 70%)", filter: "blur(120px)" }}
+            />
 
-            <div className="max-w-7xl mx-auto text-center relative z-10">
+            <div className="max-w-7xl mx-auto relative z-10">
+                <div className="text-center mb-16 reveal">
+                    <div
+                        className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
+                        style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
+                    >
+                        ¿Por qué elegirnos?
+                    </div>
+                    <h2
+                        className="text-3xl md:text-5xl font-black text-white"
+                        style={{ fontFamily: "var(--font-manrope)" }}
+                    >
+                        Todo lo que necesitas,
+                        <br />
+                        <span style={{ color: "#fe9a00" }}>nada de lo que no</span>
+                    </h2>
+                </div>
 
-                <h2 className="mb-12 md:mb-24 text-3xl font-bold text-white sm:text-4xl relative inline-block">
-                    El Poder de Tener Tu Propia Tecnología
-                    <span className="absolute bottom-[-10px] left-0 w-full h-1 bg-amber-500 rounded-full transform scale-x-50 origin-center"></span>
-                </h2>
-
-                <div className="grid gap-8 md:gap-12 md:grid-cols-3">
+                {/* Grid de beneficios */}
+                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {benefits.map((item, index) => (
-                        <div key={index} className="flex flex-col items-center text-center group">
-                            <div className="p-6 mb-8 bg-gradient-to-br from-zinc-800/50 to-zinc-900/50 rounded-2xl shadow-xl border border-zinc-700/50 group-hover:border-amber-500/30 transition-all duration-500">
-                                <item.icon className="w-12 h-12 text-amber-500" />
+                        <div
+                            key={index}
+                            className="group flex gap-5 p-7 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl hover:border-[#fe9a00]/40 transition-all duration-400 hover:bg-zinc-900/60"
+                        >
+                            <div
+                                className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center border transition-all duration-300"
+                                style={{ background: "rgba(254,154,0,0.08)", borderColor: "rgba(254,154,0,0.2)" }}
+                            >
+                                <item.icon className="w-5 h-5" style={{ color: "#fe9a00" }} />
                             </div>
-                            <h3 className="mb-4 text-xl font-bold text-white group-hover:text-amber-500 transition-colors">
-                                {item.title}
-                            </h3>
-                            <p className="text-zinc-300 text-sm leading-relaxed max-w-sm">
-                                {item.description}
-                            </p>
+                            <div>
+                                <h3 className="text-base font-bold text-white mb-2 group-hover:text-[#fe9a00] transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p className="text-zinc-400 text-sm leading-relaxed">
+                                    {item.description}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>
+
             </div>
         </section>
     );
