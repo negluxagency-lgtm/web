@@ -1,106 +1,107 @@
 "use client";
 
-import { Palette, Code2, Globe, LifeBuoy } from "lucide-react";
+import { Globe, Palette, Code2, LifeBuoy } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
     {
         icon: Globe,
         title: "Primera impresión que convence",
         description: "Cuando alguien te busca en Google, lo primero que ve es tu web. Si parece antigua o no existe, la mayoría pasa de largo. Te damos una presencia que transmite confianza desde el primer segundo.",
-        price: "desde 200€"
+        tag: "desde 200€",
     },
     {
         icon: Palette,
         title: "Refleja tu negocio, no el de otro",
-        description: "Nada de plantillas que parecen iguales. Tus colores, tu logo, tus fotos. Que quien entre sepa inmediatamente que es tu negocio y no el del de al lado.",
-        price: "única"
+        description: "Nada de plantillas iguales. Tus colores, tu logo, tus fotos. Que quien entre sepa inmediatamente que es tu negocio.",
+        tag: "100% única",
     },
     {
         icon: Code2,
         title: "Te encuentran en Google",
-        description: "Que cuando alguien en Zaragoza busque lo que tú ofreces, aparezcas tú. Tu web se verá perfecta en el móvil y cargará rápido, porque así es como funciona Google hoy.",
-        price: "visible"
+        description: "Tu web cargará rápido y se verá perfecta en el móvil, porque así es como funciona Google hoy. Aparecer en búsquedas locales de Zaragoza incluido.",
+        tag: "SEO incluido",
     },
     {
         icon: LifeBuoy,
         title: "Siempre al día, sin esperas",
-        description: "¿Cambias el horario? ¿Añades un servicio nuevo? ¿Quieres una foto diferente? Lo gestionamos en el día, sin coste. Tu web siempre estará como debe estar.",
-        price: "cambios gratis"
-    }
+        description: "¿Cambias el horario? ¿Añades un servicio? Lo gestionamos en el día, sin coste. Tu web siempre estará como debe estar.",
+        tag: "cambios gratis",
+    },
 ];
 
 export function Services() {
     return (
-        <section id="servicios" className="pt-10 pb-20 md:pt-16 md:pb-32 px-6 relative overflow-hidden">
-            {/* Glow */}
-            <div
-                className="absolute top-0 left-0 w-[500px] h-[500px] rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(ellipse, rgba(254,154,0,0.05) 0%, transparent 70%)", filter: "blur(80px)" }}
-            />
-
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-16 reveal">
-                    <div
-                        className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
-                        style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
+        <section id="servicios" className="py-20 md:py-28 bg-zinc-950 border-y border-zinc-800 relative overflow-hidden">
+            {/* Degradado naranja decorativo */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] pointer-events-none" style={{ background: "radial-gradient(ellipse, rgba(254,154,0,0.06) 0%, transparent 60%)" }} />
+            <div className="max-w-6xl mx-auto px-6">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-14"
+                >
+                    <span
+                        className="inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase rounded-full mb-4"
+                        style={{ color: "#fe9a00", background: "rgba(254,154,0,0.08)", border: "1px solid rgba(254,154,0,0.2)" }}
                     >
                         Qué incluye
-                    </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
-                        Una web que trabaja por ti{" "}
-                        <br className="hidden sm:block" />
-                        <span style={{ color: "#fe9a00" }}>mientras tú atiendes tu negocio</span>
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
+                        Una web que{" "}
+                        <span style={{ fontFamily: "var(--font-great-vibes)", color: "#fe9a00", fontSize: "1.15em", fontWeight: 400 }}>trabaja</span>
+                        {" "}por ti
                     </h2>
-                    <p className="mt-4 text-zinc-400 max-w-xl mx-auto text-sm md:text-base">
-                        Sin tecnicismos, sin reuniones interminables. Tú nos das la información y nosotros nos encargamos del resto.
+                    <p className="mt-3 text-zinc-400 max-w-md mx-auto text-sm">
+                        Sin tecnicismos ni reuniones interminables. Tú nos das la información, nosotros nos encargamos del resto.
                     </p>
+                </motion.div>
 
-                    {/* Zaragoza Ciudad Logo (Ubicación Primaria) */}
-                    <div className="mt-8 flex justify-center">
-                        <img 
-                            src="/Zaragozaciudad.png" 
-                            alt="Zaragoza Ciudad" 
-                            className="h-32 md:h-44 w-auto object-contain opacity-70 transition-all duration-500 hover:scale-105 hover:opacity-100" 
-                        />
+                {/* Mockups */}
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.95, y: 30 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full max-w-full md:max-w-5xl mx-auto px-2 sm:px-6 mb-20 md:mb-28"
+                >
+                    <div className="flex flex-row gap-2 md:gap-8 items-center justify-center">
+                        <img src="/mockup.png" alt="Diseño web mockup 1" className="w-[55%] md:w-7/12 object-contain scale-[1.02]" />
+                        <img src="/mockup1.png" alt="Diseño web mockup 2" className="w-[45%] md:w-5/12 object-contain -ml-4 md:-ml-8" />
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                    {services.map((service, index) => (
-                        <div
-                            key={index}
-                            className={`group relative p-8 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl transition-all duration-500 hover:-translate-y-2 hover:border-[#fe9a00]/40 backdrop-blur-sm overflow-hidden ${index === 2 ? 'hidden md:block' : 'flex flex-col'}`}
-                            style={{ boxShadow: "0 0 0 0 rgba(254,154,0,0)" }}
-                            onMouseEnter={e => {
-                                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 30px rgba(254,154,0,0.08)";
-                            }}
-                            onMouseLeave={e => {
-                                (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 0 0 rgba(254,154,0,0)";
-                            }}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    {services.map((s, i) => (
+                        <motion.div 
+                            key={i} 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="bg-zinc-950 border border-zinc-800 rounded-xl p-6 hover:border-zinc-700 transition-colors"
                         >
-                            {/* Icon */}
-                            <div
-                                className="w-12 h-12 mb-5 flex items-center justify-center rounded-xl border transition-all duration-500 group-hover:border-[#fe9a00]/50"
-                                style={{ background: "rgba(254,154,0,0.08)", borderColor: "rgba(254,154,0,0.2)" }}
-                            >
-                                <service.icon className="w-6 h-6" style={{ color: "#fe9a00" }} />
+                            <div className="flex items-start justify-between gap-4 mb-3">
+                                <div
+                                    className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                                    style={{ background: "rgba(254,154,0,0.1)" }}
+                                >
+                                    <s.icon className="w-5 h-5" style={{ color: "#fe9a00" }} />
+                                </div>
+                                <span
+                                    className="text-xs font-bold px-2.5 py-1 rounded-full flex-shrink-0"
+                                    style={{ color: "#fe9a00", background: "rgba(254,154,0,0.08)", border: "1px solid rgba(254,154,0,0.15)" }}
+                                >
+                                    {s.tag}
+                                </span>
                             </div>
-
-                            <h3 className="text-lg font-bold text-white mb-3 group-hover:text-[#fe9a00] transition-colors">
-                                {service.title}
+                            <h3 className="text-white font-bold text-sm mb-2" style={{ fontFamily: "var(--font-manrope)" }}>
+                                {s.title}
                             </h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed mb-5">
-                                {service.description}
-                            </p>
-
-                            {/* Tag de precio */}
-                            <span
-                                className="inline-block text-xs font-bold px-3 py-1 rounded-full"
-                                style={{ color: "#fe9a00", background: "rgba(254,154,0,0.1)" }}
-                            >
-                                {service.price}
-                            </span>
-                        </div>
+                            <p className="text-zinc-500 text-xs leading-relaxed">{s.description}</p>
+                        </motion.div>
                     ))}
                 </div>
             </div>

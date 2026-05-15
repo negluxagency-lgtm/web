@@ -3,7 +3,7 @@ import { Mail, MessageCircle } from "lucide-react";
 
 export function Footer() {
     return (
-        <footer className="border-t border-zinc-900 pt-12 md:pt-20 pb-8 md:pb-10">
+        <footer className="bg-zinc-950 border-t border-zinc-900 pt-12 md:pt-20 pb-8 md:pb-10">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12 mb-10 md:mb-16">
                     {/* Col 1: Brand & Mission */}

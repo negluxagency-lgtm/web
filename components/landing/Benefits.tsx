@@ -1,92 +1,90 @@
+"use client";
+
 import { Euro, Clock, RefreshCw, Shield, Smartphone, Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const benefits = [
     {
         icon: Euro,
         title: "Precio que tiene sentido",
-        description: "Desde 200€. La mitad al empezar y la otra mitad cuando estés conforme con el resultado. Sin sorpresas, sin costes ocultos."
+        description: "Desde 200€. La mitad al empezar, la otra cuando estés conforme. Sin sorpresas.",
     },
     {
         icon: Clock,
         title: "En una semana",
-        description: "No esperarás meses. En 7 días tienes tu web publicada y lista para que tus clientes te encuentren."
+        description: "En 7 días tienes tu web publicada y lista para que tus clientes te encuentren.",
     },
     {
         icon: RefreshCw,
         title: "Cambios incluidos",
-        description: "¿Cambias el horario? ¿Añades un servicio? Te lo actualizamos sin coste adicional. Tu web siempre estará al día."
+        description: "¿Cambias el horario o añades un servicio? Lo actualizamos sin coste adicional.",
     },
     {
         icon: Smartphone,
         title: "Se ve bien en el móvil",
-        description: "Más del 70% de tus clientes te van a ver desde el teléfono. Tu web se verá perfecta en cualquier pantalla, siempre."
+        description: "Más del 70% de tus clientes te verán desde el teléfono. Tu web será perfecta en cualquier pantalla.",
     },
-    {
-        icon: Shield,
-        title: "Todo en regla",
-        description: "Somos autónomos. Emitimos factura. Puedes pagarnos con tarjeta, Bizum o transferencia. Sin complicaciones legales."
-    },
+
     {
         icon: Star,
         title: "Solo para tu negocio",
-        description: "Nada de plantillas genéricas que parecen iguales. Programamos tu web desde cero para que refleje exactamente tu negocio."
-    }
+        description: "Nada de plantillas genéricas. Programamos desde cero para que refleje exactamente tu negocio.",
+    },
 ];
 
 export function Benefits() {
     return (
-        <section id="precios" className="py-20 md:py-32 px-6 relative overflow-hidden">
-            <div
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[400px] rounded-full pointer-events-none"
-                style={{ background: "radial-gradient(ellipse, rgba(254,154,0,0.03) 0%, transparent 70%)", filter: "blur(120px)" }}
-            />
-
-            <div className="max-w-7xl mx-auto relative z-10">
-                <div className="text-center mb-16 reveal">
-                    <div
-                        className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
-                        style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
+        <section id="precios" className="py-20 md:py-28 px-6 bg-zinc-900 relative overflow-hidden border-y border-zinc-800">
+            {/* Degradado naranja decorativo */}
+            <div className="absolute top-0 right-0 w-[500px] h-[400px] pointer-events-none" style={{ background: "radial-gradient(ellipse at top right, rgba(254,154,0,0.06) 0%, transparent 65%)" }} />
+            <div className="max-w-6xl mx-auto relative z-10">
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-14"
+                >
+                    <span
+                        className="inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase rounded-full mb-4"
+                        style={{ color: "#fe9a00", background: "rgba(254,154,0,0.08)", border: "1px solid rgba(254,154,0,0.2)" }}
                     >
-                        Sin excusas
-                    </div>
-                    <h2
-                        className="text-3xl md:text-5xl font-black text-white"
-                        style={{ fontFamily: "var(--font-manrope)" }}
-                    >
-                        Todo claro,
-                        <br />
-                        <span style={{ color: "#fe9a00" }}>sin letra pequeña</span>
+                        Sin letra pequeña
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
+                        Todo claro{" "}
+                        <span style={{ fontFamily: "var(--font-great-vibes)", color: "#fe9a00", fontSize: "1.15em", fontWeight: 400 }}>desde el principio</span>
                     </h2>
-                    <p className="mt-4 text-zinc-400 max-w-lg mx-auto text-sm md:text-base">
-                        Lo que ves es lo que hay. Sin costes inesperados, sin procesos complicados, sin esperas.
+                    <p className="mt-3 text-zinc-400 max-w-md mx-auto text-sm">
+                        Lo que ves es lo que hay. Sin costes inesperados ni procesos complicados.
                     </p>
-                </div>
+                </motion.div>
 
-                {/* Grid de beneficios */}
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {benefits.map((item, index) => (
-                        <div
-                            key={index}
-                            className="group flex gap-5 p-7 bg-zinc-900/40 border border-zinc-800/60 rounded-2xl hover:border-[#fe9a00]/40 transition-all duration-400 hover:bg-zinc-900/60"
+                <div className="flex flex-wrap justify-center gap-5">
+                    {benefits.map((b, i) => (
+                        <motion.div 
+                            key={i} 
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: i * 0.1 }}
+                            className="w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] flex gap-4 bg-zinc-950 border border-zinc-800 rounded-xl p-5 hover:border-zinc-700 transition-colors"
                         >
                             <div
-                                className="shrink-0 w-11 h-11 rounded-xl flex items-center justify-center border transition-all duration-300"
-                                style={{ background: "rgba(254,154,0,0.08)", borderColor: "rgba(254,154,0,0.2)" }}
+                                className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                                style={{ background: "rgba(254,154,0,0.1)" }}
                             >
-                                <item.icon className="w-5 h-5" style={{ color: "#fe9a00" }} />
+                                <b.icon className="w-5 h-5" style={{ color: "#fe9a00" }} />
                             </div>
                             <div>
-                                <h3 className="text-base font-bold text-white mb-2 group-hover:text-[#fe9a00] transition-colors">
-                                    {item.title}
+                                <h3 className="text-white font-bold text-sm mb-1" style={{ fontFamily: "var(--font-manrope)" }}>
+                                    {b.title}
                                 </h3>
-                                <p className="text-zinc-400 text-sm leading-relaxed">
-                                    {item.description}
-                                </p>
+                                <p className="text-zinc-500 text-xs leading-relaxed">{b.description}</p>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
-
             </div>
         </section>
     );

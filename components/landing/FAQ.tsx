@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 const faqs = [
     {
@@ -34,25 +35,38 @@ export function FAQ() {
     const [openIndex, setOpenIndex] = useState<number | null>(null);
 
     return (
-        <section id="faq" className="py-20 md:py-32 px-6 relative overflow-hidden border-t border-zinc-900/50">
+        <section id="faq" className="py-20 md:py-28 px-6 bg-zinc-950 border-t border-zinc-800 relative overflow-hidden">
+            {/* Degradado naranja decorativo */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] pointer-events-none" style={{ background: "radial-gradient(ellipse at top, rgba(254,154,0,0.07) 0%, transparent 60%)" }} />
             <div className="max-w-3xl mx-auto relative z-10">
-                <div className="text-center mb-16 reveal">
-                    <div
-                        className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
-                        style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
+                <motion.div 
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-12"
+                >
+                    <span
+                        className="inline-block px-3 py-1 text-xs font-bold tracking-wider uppercase rounded-full mb-4"
+                        style={{ color: "#fe9a00", background: "rgba(254,154,0,0.08)", border: "1px solid rgba(254,154,0,0.2)" }}
                     >
                         Tus dudas
-                    </div>
-                    <h2 className="text-3xl md:text-5xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
-                        Lo que todo el mundo <span style={{ color: "#fe9a00" }}>pregunta</span>
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
+                        Lo que todo el mundo{" "}
+                        <span style={{ fontFamily: "var(--font-great-vibes)", color: "#fe9a00", fontSize: "1.15em", fontWeight: 400 }}>pregunta</span>
                     </h2>
-                </div>
+                </motion.div>
 
                 <div className="space-y-4">
                     {faqs.map((faq, index) => (
-                        <div
+                        <motion.div
                             key={index}
-                            className="group border border-zinc-800/60 rounded-2xl overflow-hidden bg-zinc-900/30 backdrop-blur-sm transition-all duration-300"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-50px" }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="group border border-zinc-800 rounded-xl overflow-hidden bg-zinc-900 transition-all duration-300"
                             style={{ borderColor: openIndex === index ? "rgba(254,154,0,0.4)" : "" }}
                         >
                             <button
@@ -83,7 +97,7 @@ export function FAQ() {
                                     {faq.a}
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
             </div>
