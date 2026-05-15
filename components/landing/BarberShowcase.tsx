@@ -12,7 +12,7 @@ const projects = [
     {
         name: "La Goyosa",
         image: "/goyosa.png",
-        category: "Gastronomía · Zaragoza",
+        category: "Gastronomía · Huesca",
         description: "Web para un restaurante y finca de eventos de alto nivel. Experiencia visual inmersiva con gestión de reservas y menús digitales.",
         tags: ["Restauración", "Reservas", "Gourmet"],
         url: "https://lagoyosa.com/",

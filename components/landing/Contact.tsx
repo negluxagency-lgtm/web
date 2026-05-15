@@ -4,15 +4,55 @@ import { useState } from "react";
 
 export function Contact() {
     const [sent, setSent] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        // TODO: conectar a API de envío
-        setSent(true);
+        setLoading(true);
+        setError(null);
+
+        const form = e.currentTarget;
+        const data = {
+            name: (form.elements.namedItem("contact-name") as HTMLInputElement).value,
+            business: (form.elements.namedItem("contact-business") as HTMLInputElement).value,
+            email: (form.elements.namedItem("contact-email") as HTMLInputElement).value,
+            type: (form.elements.namedItem("contact-type") as HTMLSelectElement).value,
+            message: (form.elements.namedItem("contact-message") as HTMLTextAreaElement).value,
+        };
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            if (!res.ok) {
+                const json = await res.json();
+                throw new Error(json.error || "Error al enviar.");
+            }
+
+            setSent(true);
+        } catch (err: any) {
+            setError(err.message || "No se pudo enviar el mensaje. Inténtalo de nuevo.");
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
         <section id="contacto" className="py-20 md:py-32 px-6 border-t border-zinc-900/50 relative overflow-hidden">
+            {/* Foto del Pilar como fondo ambiental */}
+            <div className="absolute inset-0 pointer-events-none">
+                <img
+                    src="/pilar.jpg"
+                    alt=""
+                    className="w-full h-full object-cover opacity-[0.06]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/80 via-transparent to-zinc-950/90" />
+            </div>
+
             {/* Glow */}
             <div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full pointer-events-none"
@@ -149,15 +189,22 @@ export function Contact() {
 
                             <button
                                 type="submit"
-                                className="w-full px-10 py-5 text-base font-black text-zinc-950 rounded-full transition-all duration-300 active:scale-95"
+                                disabled={loading}
+                                className="w-full px-10 py-5 text-base font-black text-zinc-950 rounded-full transition-all duration-300 active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed"
                                 style={{
                                     background: "#fe9a00",
                                     boxShadow: "0 0 30px rgba(254,154,0,0.35)",
                                     fontFamily: "var(--font-manrope)"
                                 }}
                             >
-                                Solicitar presupuesto gratis →
+                                {loading ? "Enviando..." : "Solicitar presupuesto gratis →"}
                             </button>
+
+                            {error && (
+                                <p className="text-center text-sm text-red-400 mt-2">
+                                    ⚠ {error}
+                                </p>
+                            )}
                         </form>
 
                         <div className="mt-8 pt-8 border-t border-zinc-800/50 flex flex-col sm:flex-row items-center justify-center gap-6 text-center">

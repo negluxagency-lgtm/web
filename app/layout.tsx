@@ -107,12 +107,20 @@ export const metadata: Metadata = {
     google: 'PENDIENTE_CONFIGURAR', // <--- Pega aquí tu código cuando lo tengas
   },
 
-  // 8. Favicon e Iconos → Configurados mediante archivos en /app:
-  //    - icon.png (favicon general)
-  //    - apple-icon.png (iOS/iPadOS)
+  // 8. Favicon e Iconos
+  icons: {
+    icon: [
+      { url: "/favicon.ico", rel: "shortcut icon" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180" },
+    ],
+  },
 
   // 9. PWA Manifest
-  manifest: '/manifest.json',
+  manifest: '/site.webmanifest',
 
   // 10. Apple meta para PWA
   appleWebApp: {

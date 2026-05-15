@@ -8,10 +8,12 @@ import { Benefits } from "@/components/landing/Benefits";
 import { FAQ } from "@/components/landing/FAQ";
 import { Contact } from "@/components/landing/Contact";
 import { Footer } from "@/components/landing/Footer";
+import { AnimatedBackground } from "@/components/landing/AnimatedBackground";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-transparent text-white selection:bg-[#fe9a00] selection:text-zinc-950">
+    <main className="min-h-screen bg-transparent text-white selection:bg-[#fe9a00] selection:text-zinc-950 relative">
+      <AnimatedBackground />
       <Navbar />
       <Hero />
       <Services />

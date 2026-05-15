@@ -15,45 +15,60 @@ export function About() {
 
             <div className="max-w-6xl mx-auto relative z-10">
                 <div className="grid md:grid-cols-2 gap-16 items-center">
-                    {/* Left: texto */}
-                    <div className="reveal">
-                        <div
-                            className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
-                            style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
-                        >
-                            Quiénes somos
-                        </div>
-                        <h2
-                            className="text-3xl md:text-5xl font-black text-white leading-tight mb-6"
-                            style={{ fontFamily: "var(--font-manrope)" }}
-                        >
-                            Tres estudiantes de
-                            <br />
-                            <span style={{ color: "#fe9a00" }}>Ingeniería Informática</span>
-                        </h2>
-                        <div className="space-y-4 text-zinc-300 text-sm md:text-base leading-relaxed">
-                            <p>
-                                Somos Alex, Joel y Pablo, tres compañeros en{" "}
-                                <strong className="text-white">2º de Ingeniería Informática en la Universidad de Zaragoza (UNIZAR)</strong>.
-                            </p>
-                            <p>
-                                Sabemos lo que necesita un negocio local para tener una buena presencia online. Por eso hacemos webs{" "}
-                                <strong className="text-white">modernas, rápidas y asequibles</strong>: queremos ganar experiencia real y
-                                ayudar a digitalizar el comercio de nuestra ciudad.
-                            </p>
-                            <p>
-                                No somos una gran agencia. Somos estudiantes apasionados por la tecnología que trabajan con{" "}
-                                <strong style={{ color: "#fe9a00" }}>dedicación, precio honesto y soporte real</strong>.
-                            </p>
+                    {/* Left: foto equipo + texto */}
+                    <div className="reveal flex flex-col gap-6">
+                        {/* Foto del equipo */}
+                        <div className="relative rounded-2xl overflow-hidden border border-zinc-800/60 aspect-[4/3]">
+                            <img
+                                src="/equipo.png"
+                                alt="El equipo de Nelux Webs"
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
+                            <div className="absolute bottom-4 left-4">
+                                <span
+                                    className="px-3 py-1 text-xs font-bold rounded-full"
+                                    style={{ background: "rgba(254,154,0,0.15)", color: "#fe9a00", border: "1px solid rgba(254,154,0,0.3)" }}
+                                >
+                                    Alex · Joel · Pablo
+                                </span>
+                            </div>
                         </div>
 
-                        {/* Logos/badges institucionales */}
-                        <div className="mt-10 flex items-center opacity-70">
-                            <img
-                                src="/unizar.png"
-                                alt="Universidad de Zaragoza"
-                                className="h-10 md:h-12 w-auto object-contain filter brightness-0 invert"
-                            />
+                        <div>
+                            <div
+                                className="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-wider uppercase rounded-full border"
+                                style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
+                            >
+                                Quiénes somos
+                            </div>
+                            <h2
+                                className="text-3xl md:text-4xl font-black text-white leading-tight mb-4"
+                                style={{ fontFamily: "var(--font-manrope)" }}
+                            >
+                                Tres estudiantes de
+                                <br />
+                                <span style={{ color: "#fe9a00" }}>Ingeniería Informática</span>
+                            </h2>
+                            <div className="space-y-3 text-zinc-300 text-sm leading-relaxed">
+                                <p>
+                                    Somos Alex, Joel y Pablo, tres compañeros en{" "}
+                                    <strong className="text-white">2º de Ingeniería Informática en la Universidad de Zaragoza (UNIZAR)</strong>.
+                                </p>
+                                <p>
+                                    No somos una gran agencia. Trabajamos con{" "}
+                                    <strong style={{ color: "#fe9a00" }}>dedicación, precio honesto y soporte real</strong>{" "}
+                                    para digitalizar el comercio local de Zaragoza.
+                                </p>
+                            </div>
+                            {/* Logo UNIZAR */}
+                            <div className="mt-6 flex items-center opacity-70">
+                                <img
+                                    src="/unizar.png"
+                                    alt="Universidad de Zaragoza"
+                                    className="h-8 md:h-10 w-auto object-contain filter brightness-0 invert"
+                                />
+                            </div>
                         </div>
                     </div>
 

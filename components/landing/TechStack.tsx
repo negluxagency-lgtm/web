@@ -53,6 +53,17 @@ export function TechStack() {
                     </p>
                 </div>
 
+                {/* Imagen visual */}
+                <div className="relative mb-16 rounded-2xl overflow-hidden border border-zinc-800/60 max-w-3xl mx-auto" style={{ height: "220px" }}>
+                    <img
+                        src="/programador.png"
+                        alt="Desarrollo web en Nelux"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/70 via-transparent to-zinc-950/70" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
+                </div>
+
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative">
                     {/* Línea conectora desktop */}
                     <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent z-0" />

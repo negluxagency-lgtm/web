@@ -60,7 +60,7 @@ export function Services() {
                         <img 
                             src="/Zaragozaciudad.png" 
                             alt="Zaragoza Ciudad" 
-                            className="h-32 md:h-44 w-auto object-contain transition-transform duration-500 hover:scale-105" 
+                            className="h-32 md:h-44 w-auto object-contain opacity-70 transition-all duration-500 hover:scale-105 hover:opacity-100" 
                         />
                     </div>
                 </div>
