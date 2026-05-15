@@ -20,7 +20,7 @@ const stats = [
 ];
 
 export function Hero() {
-    const [form, setForm] = useState({ name: "", email: "", business: "", type: "", message: "" });
+    const [form, setForm] = useState({ name: "", email: "", phone: "", type: "", message: "" });
     const [loading, setLoading] = useState(false);
     const [sent, setSent] = useState(false);
     const [error, setError] = useState("");
@@ -180,40 +180,40 @@ export function Hero() {
                             </div>
 
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Tu nombre</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Alex García"
-                                            required
-                                            value={form.name}
-                                            onChange={e => setForm({ ...form, name: e.target.value })}
-                                            className="w-full px-3 py-2.5 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#fe9a00] transition-colors"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Tu negocio</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Peluquería Sol"
-                                            value={form.business}
-                                            onChange={e => setForm({ ...form, business: e.target.value })}
-                                            className="w-full px-3 py-2.5 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#fe9a00] transition-colors"
-                                        />
-                                    </div>
-                                </div>
-
                                 <div>
-                                    <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Email</label>
+                                    <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Tu nombre</label>
                                     <input
-                                        type="email"
-                                        placeholder="tu@email.com"
+                                        type="text"
+                                        placeholder="Alex García"
                                         required
-                                        value={form.email}
-                                        onChange={e => setForm({ ...form, email: e.target.value })}
+                                        value={form.name}
+                                        onChange={e => setForm({ ...form, name: e.target.value })}
                                         className="w-full px-3 py-2.5 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#fe9a00] transition-colors"
                                     />
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Email</label>
+                                        <input
+                                            type="email"
+                                            placeholder="tu@email.com"
+                                            required
+                                            value={form.email}
+                                            onChange={e => setForm({ ...form, email: e.target.value })}
+                                            className="w-full px-3 py-2.5 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#fe9a00] transition-colors"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Teléfono</label>
+                                        <input
+                                            type="tel"
+                                            placeholder="612 345 678"
+                                            value={form.phone}
+                                            onChange={e => setForm({ ...form, phone: e.target.value })}
+                                            className="w-full px-3 py-2.5 rounded-lg bg-zinc-950 border border-zinc-700 text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#fe9a00] transition-colors"
+                                        />
+                                    </div>
                                 </div>
 
                                 <div>
@@ -234,7 +234,7 @@ export function Hero() {
                                 </div>
 
                                 <div>
-                                    <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Cuéntanos algo <span className="text-zinc-600">(opcional)</span></label>
+                                    <label className="block text-xs text-zinc-400 mb-1.5 font-medium">Cuéntanos brevemente sobre tu negocio <span className="text-zinc-600">(opcional)</span></label>
                                     <textarea
                                         placeholder="¿Qué necesitas? ¿Tienes web ahora mismo?..."
                                         rows={3}

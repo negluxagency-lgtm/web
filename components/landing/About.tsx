@@ -25,14 +25,7 @@ export function About() {
                                 className="w-full h-full object-cover"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
-                            <div className="absolute bottom-4 left-4">
-                                <span
-                                    className="px-3 py-1 text-xs font-bold rounded-full"
-                                    style={{ background: "rgba(254,154,0,0.15)", color: "#fe9a00", border: "1px solid rgba(254,154,0,0.3)" }}
-                                >
-                                    Alex · Joel · Pablo
-                                </span>
-                            </div>
+
                         </div>
 
                         <div>

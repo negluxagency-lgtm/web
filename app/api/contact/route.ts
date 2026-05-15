@@ -5,7 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
     try {
-        const { name, business, email, type, message } = await req.json();
+        const { name, email, phone, type, message } = await req.json();
 
         if (!name || !email) {
             return NextResponse.json({ error: "Faltan campos obligatorios." }, { status: 400 });
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
             from: fromAddress,
             to: ["contacto@nelux.es"],
             replyTo: email,
-            subject: `🌐 Nueva solicitud de presupuesto — ${business || name}`,
+            subject: `🌐 Nueva solicitud de presupuesto — ${name}`,
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #09090b; color: #ffffff; padding: 32px; border-radius: 12px; border: 1px solid #27272a;">
                     
@@ -32,14 +32,17 @@ export async function POST(req: Request) {
                             <td style="padding: 12px 0; border-bottom: 1px solid #27272a; color: #a1a1aa; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; width: 140px;">Nombre</td>
                             <td style="padding: 12px 0; border-bottom: 1px solid #27272a; color: #ffffff; font-size: 15px; font-weight: 600;">${name}</td>
                         </tr>
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #27272a; color: #a1a1aa; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;">Negocio</td>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #27272a; color: #ffffff; font-size: 15px; font-weight: 600;">${business || "—"}</td>
-                        </tr>
+
                         <tr>
                             <td style="padding: 12px 0; border-bottom: 1px solid #27272a; color: #a1a1aa; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;">Email</td>
                             <td style="padding: 12px 0; border-bottom: 1px solid #27272a;">
                                 <a href="mailto:${email}" style="color: #fe9a00; font-size: 15px; font-weight: 600; text-decoration: none;">${email}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #27272a; color: #a1a1aa; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;">Teléfono</td>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #27272a;">
+                                ${phone ? `<a href="tel:${phone.replace(/\s+/g, '')}" style="color: #fe9a00; font-size: 15px; font-weight: 600; text-decoration: none;">${phone}</a>` : '<span style="color: #ffffff; font-size: 15px;">—</span>'}
                             </td>
                         </tr>
                         <tr>
