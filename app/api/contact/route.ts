@@ -11,8 +11,11 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: "Faltan campos obligatorios." }, { status: 400 });
         }
 
-        const { error } = await resend.emails.send({
-            from: process.env.RESEND_FROM as string,
+        // Sanear el campo from (elimina comillas simples/dobles si el .env las incluye)
+        const fromAddress = (process.env.RESEND_FROM as string).replace(/^['"]|['"]$/g, "");
+
+        const { data, error } = await resend.emails.send({
+            from: fromAddress,
             to: ["contacto@nelux.es"],
             replyTo: email,
             subject: `🌐 Nueva solicitud de presupuesto — ${business || name}`,
@@ -65,10 +68,11 @@ export async function POST(req: Request) {
         });
 
         if (error) {
-            console.error("Resend error:", error);
-            return NextResponse.json({ error: "Error al enviar el mensaje." }, { status: 500 });
+            console.error("❌ Resend error:", JSON.stringify(error));
+            return NextResponse.json({ error: `Resend: ${(error as any).message || "Error al enviar."}` }, { status: 500 });
         }
 
+        console.log("✅ Email enviado:", data?.id);
         return NextResponse.json({ success: true });
 
     } catch (err) {

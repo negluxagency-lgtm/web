@@ -3,10 +3,10 @@ import { MapPin } from "lucide-react";
 
 export function Hero() {
     return (
-        <section className="relative flex flex-col items-center justify-center min-h-[85vh] px-6 pt-32 pb-6 text-center overflow-hidden">
+        <section className="relative flex flex-col items-center justify-center min-h-[85vh] px-6 pt-52 md:pt-56 pb-6 text-center overflow-hidden">
             {/* Mapa nocturno de Zaragoza (Fondo atmosférico) */}
             <div
-                className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] max-w-[400px] md:w-full md:max-w-[800px] aspect-square pointer-events-none select-none animate-float-b opacity-80 mix-blend-screen"
+                className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] max-w-[400px] md:w-full md:max-w-[800px] aspect-square pointer-events-none select-none animate-float-b opacity-80 md:opacity-30 mix-blend-screen"
                 style={{ zIndex: 0 }}
             >
                 <img
@@ -77,29 +77,27 @@ export function Hero() {
                     className="animate-fade-in-up mt-10 text-xs text-zinc-500"
                     style={{ animationDelay: "560ms" }}
                 >
-                    ✓ Sin reuniones eternas · sin tecnicismos · sin sorpresas en el precio
+                    Sin reuniones eternas · sin tecnicismos · sin sorpresas en el precio
                 </p>
 
                 {/* Mockups */}
                 <div
-                    className="animate-fade-in-up mt-12 flex flex-row items-center justify-center gap-4 w-full max-w-4xl"
+                    className="animate-fade-in-up mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-4xl"
                     style={{ animationDelay: "640ms" }}
                 >
-                    <div className="relative rounded-2xl overflow-hidden border border-zinc-800/50 shadow-2xl w-1/2 sm:w-auto">
+                    <div className="w-full max-w-[70%] sm:w-auto sm:max-w-none mx-auto">
                         <img
                             src="/mockup1.png"
                             alt="Web en MacBook"
-                            className="w-full sm:w-72 md:w-96 h-auto object-cover"
+                            className="w-full sm:w-72 md:w-96 h-auto object-contain"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent" />
                     </div>
-                    <div className="relative rounded-2xl overflow-hidden border border-zinc-800/50 shadow-2xl w-1/2 sm:w-auto">
+                    <div className="w-full sm:w-auto">
                         <img
                             src="/mockup.png"
                             alt="Webs en iPhone"
-                            className="w-full sm:w-72 md:w-[420px] h-auto object-cover"
+                            className="w-full sm:w-72 md:w-[480px] h-auto object-contain"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 to-transparent" />
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@ export function Footer() {
                             </span>
                         </Link>
                         <p className="text-sm text-zinc-400 leading-relaxed max-w-xs">
-                            Webs modernas y profesionales para negocios locales de Zaragoza. Hechas por estudiantes de Ingeniería Informática de la UNIZAR.
+                            Webs modernas y profesionales para negocios locales de Zaragoza. Hechas por estudiantes de Ingeniería Informática.
                         </p>
                         <div className="flex gap-3 mt-2">
                             <a
@@ -116,9 +116,7 @@ export function Footer() {
                     <p className="text-xs text-zinc-600">
                         © 2026 Nelux Webs · Alex, Joel & Pablo · Zaragoza, España
                     </p>
-                    <p className="text-xs text-zinc-700">
-                        Estudiantes de Ingeniería Informática · UNIZAR
-                    </p>
+
                 </div>
             </div>
         </footer>

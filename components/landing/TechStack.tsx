@@ -31,7 +31,7 @@ const steps = [
 
 export function TechStack() {
     return (
-        <section className="py-20 md:py-32 px-6 relative overflow-hidden border-y border-zinc-900/50">
+        <section id="proceso" className="py-20 md:py-32 px-10 relative overflow-hidden border-y border-zinc-900/50">
             <div
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] rounded-full pointer-events-none opacity-50"
                 style={{ background: "radial-gradient(ellipse, rgba(254,154,0,0.06) 0%, transparent 70%)", filter: "blur(60px)" }}
@@ -64,43 +64,65 @@ export function TechStack() {
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/60 to-transparent" />
                 </div>
 
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 relative">
+                <div className="flex flex-col md:grid md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 relative">
                     {/* Línea conectora desktop */}
                     <div className="hidden lg:block absolute top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-transparent via-zinc-700 to-transparent z-0" />
 
                     {steps.map((step, index) => (
-                        <div key={index} className="relative flex flex-col items-center text-center group">
+                        <div 
+                            key={index} 
+                            className={`relative flex flex-col group max-w-[70%] md:max-w-none 
+                                ${index % 2 === 0 ? 'self-start items-start text-left md:items-center md:text-center' : 'self-end items-end text-right md:items-center md:text-center'}
+                                md:self-auto`}
+                        >
+                            {/* Flechas conectoras (Solo móvil) */}
+                            {index < steps.length - 1 && (
+                                <div className={`md:hidden absolute -bottom-14 z-0 opacity-40 pointer-events-none
+                                    ${index % 2 === 0 ? 'left-[50%] w-[50%]' : 'right-[50%] w-[50%]'}`}>
+                                    {index % 2 === 0 ? (
+                                        /* Flecha Izquierda -> Derecha */
+                                        <svg viewBox="0 0 100 60" fill="none" className="w-full h-14 text-[#fe9a00] overflow-visible">
+                                            <path d="M0,0 C30,0 70,60 100,60" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+                                            <path d="M90,55 L100,60 L90,65" stroke="currentColor" strokeWidth="2" fill="none" />
+                                        </svg>
+                                    ) : (
+                                        /* Flecha Derecha -> Izquierda */
+                                        <svg viewBox="0 0 100 60" fill="none" className="w-full h-14 text-[#fe9a00] overflow-visible">
+                                            <path d="M100,0 C70,0 30,60 0,60" stroke="currentColor" strokeWidth="2" strokeDasharray="4 4" />
+                                            <path d="M10,55 L0,60 L10,65" stroke="currentColor" strokeWidth="2" fill="none" />
+                                        </svg>
+                                    )}
+                                </div>
+                            )}
+
                             {/* Número y icono */}
-                            <div className="relative z-10 mb-6">
+                            <div className="relative z-10 mb-4 md:mb-6">
                                 <div
-                                    className="w-16 h-16 rounded-2xl flex items-center justify-center border transition-all duration-500 group-hover:scale-110 bg-zinc-950"
+                                    className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center border transition-all duration-500 group-hover:scale-110 bg-zinc-950"
                                     style={{
                                         borderColor: "rgba(254,154,0,0.25)",
                                         boxShadow: "0 0 0 rgba(254,154,0,0)"
                                     }}
-                                    onMouseEnter={e => {
-                                        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 20px rgba(254,154,0,0.2)";
-                                    }}
-                                    onMouseLeave={e => {
-                                        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 0 0 rgba(254,154,0,0)";
-                                    }}
                                 >
-                                    <step.icon className="w-7 h-7" style={{ color: "#fe9a00" }} />
+                                    <step.icon className="w-5 h-5 md:w-7 md:h-7" style={{ color: "#fe9a00" }} />
                                 </div>
                                 <span
-                                    className="absolute -top-2 -right-2 text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full text-zinc-950"
+                                    className={`absolute -top-1.5 md:-top-2 text-[8px] md:text-[10px] font-black w-4 h-4 md:w-5 md:h-5 flex items-center justify-center rounded-full text-zinc-950
+                                        ${index % 2 === 0 ? '-right-1.5 md:-right-2' : '-left-1.5 md:-left-2'}`}
                                     style={{ background: "#fe9a00" }}
                                 >
                                     {step.step.slice(-1)}
                                 </span>
                             </div>
 
-                            <h3 className="text-base font-bold text-white mb-2 group-hover:text-[#fe9a00] transition-colors">
-                                {step.title}
-                            </h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed">
-                                {step.description}
-                            </p>
+                            <div className="w-full">
+                                <h3 className="text-sm md:text-base font-bold text-white mb-1 md:mb-2 group-hover:text-[#fe9a00] transition-colors" style={{ fontFamily: "var(--font-manrope)" }}>
+                                    {step.title}
+                                </h3>
+                                <p className="text-zinc-400 text-[11px] md:text-sm leading-relaxed">
+                                    {step.description}
+                                </p>
+                            </div>
                         </div>
                     ))}
                 </div>

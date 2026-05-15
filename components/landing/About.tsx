@@ -18,7 +18,7 @@ export function About() {
                     {/* Left: foto equipo + texto */}
                     <div className="reveal flex flex-col gap-6">
                         {/* Foto del equipo */}
-                        <div className="relative rounded-2xl overflow-hidden border border-zinc-800/60 aspect-[4/3]">
+                        <div className="relative rounded-2xl overflow-hidden border border-zinc-800/60 aspect-[16/9]">
                             <img
                                 src="/equipo.png"
                                 alt="El equipo de Nelux Webs"
@@ -75,7 +75,7 @@ export function About() {
                                 className="flex flex-col items-center text-center p-6 bg-zinc-900/50 border border-zinc-800/60 rounded-2xl hover:border-[#fe9a00]/40 transition-all duration-500 group hover:-translate-y-1"
                             >
                                 <div
-                                    className="w-16 h-16 md:w-20 md:h-20 rounded-2xl mb-4 border overflow-hidden transition-all duration-300 group-hover:scale-105"
+                                    className="w-24 h-24 md:w-28 md:h-28 rounded-2xl mb-4 border overflow-hidden transition-all duration-300 group-hover:scale-105"
                                     style={{ borderColor: "rgba(254,154,0,0.2)" }}
                                 >
                                     <img
