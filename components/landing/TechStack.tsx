@@ -6,26 +6,26 @@ const steps = [
     {
         icon: MessageSquare,
         step: "01",
-        title: "Nos cuentas tu idea",
-        description: "Nos contactas y nos cuentas cómo quieres tu web: colores, estilo, secciones que necesitas. Sin compromisos."
+        title: "Nos cuentas qué tienes",
+        description: "Nos escribes por WhatsApp o rellenas el formulario. Nos explicas tu negocio: qué haces, qué te gusta, qué necesitas. Sin tecnicismos, sin reuniones."
     },
     {
         icon: FileSignature,
         step: "02",
-        title: "Presupuesto y contrato",
-        description: "Te enviamos el presupuesto personalizado. Si te convence, firmamos el contrato y pagas el 50% inicial."
+        title: "Precio claro en 24h",
+        description: "Recibes un presupuesto concreto, sin letra pequeña. Si te encaja, firmamos y empezamos. Si no, no le debes nada a nadie."
     },
     {
         icon: Laptop,
         step: "03",
-        title: "Programamos tu web",
-        description: "Desarrollamos tu web desde cero en máximo 7 días. Te mantenemos al tanto del progreso con vistas previas."
+        title: "Nos encargamos de todo",
+        description: "Tú no tienes que hacer nada más. En menos de 7 días diseñamos, programamos y te enseñamos el resultado para que lo veas antes de publicarlo."
     },
     {
         icon: Rocket,
         step: "04",
-        title: "¡Tu web en vivo!",
-        description: "Revisas, pedimos cambios si los hay (gratis), y una vez conforme la publicamos. Pagas el 50% restante."
+        title: "Tu negocio, en marcha",
+        description: "Revisas, nos dices si quieres cambiar algo (gratis) y la publicamos. A partir de ese momento ya te pueden encontrar en Google."
     }
 ];
 
@@ -43,13 +43,13 @@ export function TechStack() {
                         className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
                         style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
                     >
-                        Proceso de trabajo
+                        Cómo funciona
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
-                        ¿Cómo lo hacemos?
+                        Más fácil de lo que crees
                     </h2>
                     <p className="mt-4 text-zinc-400 max-w-lg mx-auto text-sm md:text-base">
-                        Simple, rápido y sin complicaciones. De la idea a la web online en una semana.
+                        Sin reuniones eternas ni tecnicismos. Cuatro pasos y tu negocio ya tiene la imagen que merece.
                     </p>
                 </div>
 

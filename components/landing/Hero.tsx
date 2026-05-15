@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { MapPin, GraduationCap, Zap } from "lucide-react";
+import { MapPin } from "lucide-react";
 
 export function Hero() {
     return (
-        <section className="relative flex flex-col items-center justify-center min-h-[85vh] px-6 pt-24 pb-6 text-center overflow-hidden">
+        <section className="relative flex flex-col items-center justify-center min-h-[85vh] px-6 pt-32 pb-6 text-center overflow-hidden">
             {/* Mapa nocturno de Zaragoza (Fondo atmosférico) */}
             <div
                 className="absolute top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] max-w-[400px] md:w-full md:max-w-[800px] aspect-square pointer-events-none select-none animate-float-b opacity-80 mix-blend-screen"
@@ -26,7 +26,7 @@ export function Hero() {
                     Tu negocio,{" "}
                     <span className="block">
                         visible en{" "}
-                        <span className="animate-shimmer">internet.</span>
+                        <span className="animate-shimmer">internet</span>
                     </span>
                 </h1>
 
@@ -35,11 +35,10 @@ export function Hero() {
                     className="animate-fade-in-up max-w-2xl mt-4 text-sm sm:text-lg md:text-xl text-zinc-300 leading-relaxed"
                     style={{ animationDelay: "200ms" }}
                 >
-                    Hacemos webs{" "}
-                    <strong className="text-white">modernas y profesionales</strong>{" "}
-                    para negocios locales de{" "}
-                    <strong className="text-white">Zaragoza</strong>. Desde{" "}
-                    <strong style={{ color: "#fe9a00" }}>200€</strong>, entrega en 7 días.
+                    Cada día hay gente en Zaragoza buscando lo que tú ofreces.{" "}
+                    <strong className="text-white">Si no te encuentran online, se van con tu competencia.</strong>{" "}
+                    Lo solucionamos en{" "}
+                    <strong style={{ color: "#fe9a00" }}>7 días</strong>.
                 </p>
 
                 {/* Chips */}
@@ -47,19 +46,10 @@ export function Hero() {
                     className="animate-fade-in-up flex flex-wrap justify-center gap-3 mt-8"
                     style={{ animationDelay: "320ms" }}
                 >
-                    {[
-                        { icon: MapPin, text: "Solo Zaragoza" },
-                        { icon: Zap, text: "Entrega en 7 días" },
-                        { icon: GraduationCap, text: "Precio de estudiante" },
-                    ].map(({ icon: Icon, text }) => (
-                        <span
-                            key={text}
-                            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-zinc-300 bg-zinc-900/70 border border-zinc-800 transition-all duration-300 hover:border-[#fe9a00]/40 hover:text-white"
-                        >
-                            <Icon size={13} style={{ color: "#fe9a00" }} />
-                            {text}
-                        </span>
-                    ))}
+                    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold text-zinc-300 bg-zinc-900/70 border border-zinc-800 transition-all duration-300 hover:border-[#fe9a00]/40 hover:text-white">
+                        <MapPin size={13} style={{ color: "#fe9a00" }} />
+                        Solo para negocios locales de Zaragoza
+                    </span>
                 </div>
 
                 {/* CTAs */}
@@ -72,13 +62,13 @@ export function Hero() {
                         className="px-8 py-4 text-xs md:text-base font-bold text-zinc-950 rounded-full transition-all duration-300 hover:scale-105 hover:brightness-110 active:scale-95"
                         style={{ background: "#fe9a00", boxShadow: "0 0 30px rgba(254,154,0,0.35)" }}
                     >
-                        Quiero mi web →
+                        Hablamos sin compromiso →
                     </Link>
                     <Link
                         href="#portfolio"
                         className="px-8 py-4 text-xs md:text-base font-semibold text-white rounded-full border border-zinc-700 hover:border-zinc-500 transition-all duration-300 bg-zinc-900/50 hover:scale-105 active:scale-95"
                     >
-                        Ver proyectos
+                        Ver ejemplos reales
                     </Link>
                 </div>
 
@@ -87,7 +77,7 @@ export function Hero() {
                     className="animate-fade-in-up mt-10 text-xs text-zinc-500"
                     style={{ animationDelay: "560ms" }}
                 >
-                    ✓ Todo legal · autónomos · factura incluida · pago a mitades
+                    ✓ Sin reuniones eternas · sin tecnicismos · sin sorpresas en el precio
                 </p>
 
                 {/* Mockups */}

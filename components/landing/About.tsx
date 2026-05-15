@@ -46,29 +46,24 @@ export function About() {
                                 className="text-3xl md:text-4xl font-black text-white leading-tight mb-4"
                                 style={{ fontFamily: "var(--font-manrope)" }}
                             >
-                                Tres estudiantes de
+                                Jóvenes, cercanos
                                 <br />
-                                <span style={{ color: "#fe9a00" }}>Ingeniería Informática</span>
+                                <span style={{ color: "#fe9a00" }}>y sin intermediarios</span>
                             </h2>
                             <div className="space-y-3 text-zinc-300 text-sm leading-relaxed">
                                 <p>
-                                    Somos Alex, Joel y Pablo, tres compañeros en{" "}
-                                    <strong className="text-white">2º de Ingeniería Informática en la Universidad de Zaragoza (UNIZAR)</strong>.
+                                    Si alguna vez has sentido que tu negocio parece menos serio online de lo que es en realidad,{" "}
+                                    <strong className="text-white">no es tu culpa</strong>. La mayoría de agencias cobran demasiado o complican algo que debería ser simple.
                                 </p>
                                 <p>
-                                    No somos una gran agencia. Trabajamos con{" "}
-                                    <strong style={{ color: "#fe9a00" }}>dedicación, precio honesto y soporte real</strong>{" "}
-                                    para digitalizar el comercio local de Zaragoza.
+                                    Somos Alex, Joel y Pablo, tres estudiantes de <strong className="text-white">Ingeniería Informática en Zaragoza</strong>. Hacemos webs para negocios locales porque conocemos la ciudad, somos cercanos y{" "}
+                                    <strong style={{ color: "#fe9a00" }}>cobramos lo justo</strong>.
+                                </p>
+                                <p>
+                                    Sin comerciales, sin intermediarios. Hablas directamente con quien va a hacerte la web.
                                 </p>
                             </div>
-                            {/* Logo UNIZAR */}
-                            <div className="mt-6 flex items-center opacity-70">
-                                <img
-                                    src="/unizar.png"
-                                    alt="Universidad de Zaragoza"
-                                    className="h-8 md:h-10 w-auto object-contain filter brightness-0 invert"
-                                />
-                            </div>
+
                         </div>
                     </div>
 

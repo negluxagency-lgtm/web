@@ -65,18 +65,18 @@ export function Contact() {
                         className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
                         style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
                     >
-                        Hablamos
+                        Sin compromiso
                     </div>
                     <h2
                         className="text-3xl md:text-5xl font-black text-white mb-4"
                         style={{ fontFamily: "var(--font-manrope)" }}
                     >
-                        ¿Quieres tu web?
+                        ¿Tu negocio merece
                         <br />
-                        <span style={{ color: "#fe9a00" }}>Cuéntanos tu negocio</span>
+                        <span style={{ color: "#fe9a00" }}>mejor imagen online?</span>
                     </h2>
                     <p className="text-zinc-400 text-sm md:text-base max-w-lg mx-auto">
-                        Sin compromisos. Te respondemos en menos de 24 horas con un presupuesto personalizado gratis.
+                        Cuéntanos qué haces. En menos de 24 horas te decimos si podemos ayudarte y cuánto costaría. Sin reuniones, sin rollos.
                     </p>
                 </div>
 
@@ -197,7 +197,7 @@ export function Contact() {
                                     fontFamily: "var(--font-manrope)"
                                 }}
                             >
-                                {loading ? "Enviando..." : "Solicitar presupuesto gratis →"}
+                                {loading ? "Enviando..." : "Enviar consulta →"}
                             </button>
 
                             {error && (

@@ -5,26 +5,26 @@ import { Palette, Code2, Globe, LifeBuoy } from "lucide-react";
 const services = [
     {
         icon: Globe,
-        title: "Web Corporativa",
-        description: "Presencia digital profesional para tu negocio. Diseño único, tus colores, tu logo y tus fotos. Completamente personalizada para que destaque entre la competencia.",
+        title: "Primera impresión que convence",
+        description: "Cuando alguien te busca en Google, lo primero que ve es tu web. Si parece antigua o no existe, la mayoría pasa de largo. Te damos una presencia que transmite confianza desde el primer segundo.",
         price: "desde 200€"
     },
     {
         icon: Palette,
-        title: "100% Personalizada",
-        description: "Programamos todo desde cero, nada de plantillas. Tú eliges los colores, el estilo, las secciones. Tu web, a tu imagen.",
-        price: "tu imagen"
+        title: "Refleja tu negocio, no el de otro",
+        description: "Nada de plantillas que parecen iguales. Tus colores, tu logo, tus fotos. Que quien entre sepa inmediatamente que es tu negocio y no el del de al lado.",
+        price: "única"
     },
     {
         icon: Code2,
-        title: "Hecha para crecer",
-        description: "Webs optimizadas para móvil, rápidas y con buen SEO para que Google te encuentre fácilmente. Modernas y funcionales.",
-        price: "SEO incluido"
+        title: "Te encuentran en Google",
+        description: "Que cuando alguien en Zaragoza busque lo que tú ofreces, aparezcas tú. Tu web se verá perfecta en el móvil y cargará rápido, porque así es como funciona Google hoy.",
+        price: "visible"
     },
     {
         icon: LifeBuoy,
-        title: "Soporte continuo",
-        description: "¿Quieres cambiar algo? Te lo hacemos gratis y rápido. Siempre disponibles para que tu web esté perfecta.",
+        title: "Siempre al día, sin esperas",
+        description: "¿Cambias el horario? ¿Añades un servicio nuevo? ¿Quieres una foto diferente? Lo gestionamos en el día, sin coste. Tu web siempre estará como debe estar.",
         price: "cambios gratis"
     }
 ];
@@ -44,15 +44,15 @@ export function Services() {
                         className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
                         style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
                     >
-                        Nuestros Servicios
+                        Qué incluye
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
-                        Todo lo que necesita{" "}
+                        Una web que trabaja por ti{" "}
                         <br className="hidden sm:block" />
-                        <span style={{ color: "#fe9a00" }}>tu negocio en internet</span>
+                        <span style={{ color: "#fe9a00" }}>mientras tú atiendes tu negocio</span>
                     </h2>
                     <p className="mt-4 text-zinc-400 max-w-xl mx-auto text-sm md:text-base">
-                        Webs modernas, rápidas y profesionales a un precio que un negocio local puede permitirse.
+                        Sin tecnicismos, sin reuniones interminables. Tú nos das la información y nosotros nos encargamos del resto.
                     </p>
 
                     {/* Zaragoza Ciudad Logo (Ubicación Primaria) */}

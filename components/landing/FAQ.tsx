@@ -5,28 +5,28 @@ import { ChevronDown } from "lucide-react";
 
 const faqs = [
     {
-        q: "¿Cuánto cuesta hacer una web con vosotros?",
-        a: "Nuestros precios son proporcionales a la complejidad. Una web simple cuesta 200€, una estándar 300€ y una más compleja hasta 500€. El pago se realiza en dos partes: 50% al firmar el contrato y el 50% restante cuando estés conforme con el resultado. Además, hay un coste de 30€ al año para el dominio (.com, .es, etc.)."
+        q: "¿Cuánto me va a costar?",
+        a: "Depende de lo que necesites, pero la mayoría de negocios locales encajan entre 200 y 300€. Pago en dos partes: la mitad al empezar y la otra cuando estés conforme con el resultado. Sin letra pequeña ni costes ocultos. El dominio (.es o .com) son 30€ al año aparte."
     },
     {
-        q: "¿Qué pasa si quiero cambiar algo en el futuro?",
-        a: "Si quieres hacer cualquier cambio en tu página web, te lo haremos totalmente gratis y rápidamente, a no ser que sea un cambio extremadamente complejo o una remodelación completa de la web."
+        q: "¿Esto es complicado para mí?",
+        a: "Para nada. Tú solo tienes que contarnos qué haces y qué te gusta. Nosotros nos encargamos de todo lo demás: el diseño, la programación y la publicación. No necesitas saber nada de tecnología ni tomar ningún tipo de decisión técnica."
     },
     {
-        q: "¿Cómo hacéis las páginas web?",
-        a: "Las hacemos completamente desde cero programando nosotros todo el código. No usamos plantillas genéricas. La web será 100% personalizada con tus colores, logos y fotos, adaptándonos totalmente a lo que nos digas."
+        q: "¿Qué pasa si luego quiero cambiar algo?",
+        a: "Lo hacemos sin coste. Si quieres actualizar el horario, cambiar una foto, añadir un servicio o corregir algo, te lo gestionamos en el día. Tu web siempre estará como la quieres."
     },
     {
-        q: "¿Es legal? ¿Podéis emitir factura?",
-        a: "Sí, es totalmente legal. Somos autónomos y emitimos factura por nuestros servicios. Puedes pagar mediante tarjeta, Bizum o transferencia bancaria."
+        q: "¿Realmente en 7 días?",
+        a: "Sí. Nuestro plazo habitual es 5 días laborables y el máximo 7 días naturales. Nada de esperar semanas o meses como suele pasar con las agencias."
     },
     {
-        q: "¿Cuánto tardáis en tener la web lista?",
-        a: "Solemos tardar unos 5 días laborables. En cualquier caso, el plazo máximo de entrega es de 7 días naturales para que tengas tu negocio online lo antes posible."
+        q: "¿Puedo fiarme de vosotros si sois estudiantes?",
+        a: "Entendemos la duda. Por eso trabajamos con contrato, cobramos por fases y no publicamos la web hasta que estés conforme. Puedes ver los proyectos reales que hemos hecho y hablar con nosotros antes de comprometerte a nada."
     },
     {
-        q: "¿Qué pasa si me arrepiento después de empezar?",
-        a: "Hacemos la web 100% a tu gusto para que eso no pase, pero si finalmente decides no continuar, te devolveríamos el 30% del dinero, ya que solo cobramos por el tiempo que nos cuesta realizar el trabajo."
+        q: "¿Y si al final no me convence?",
+        a: "Trabajamos hasta que estés conforme antes de publicarla. Pero si en algún momento decides no continuar, te devolvemos el 30% del importe ya que solo cobramos por el tiempo invertido."
     }
 ];
 
@@ -41,10 +41,10 @@ export function FAQ() {
                         className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
                         style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
                     >
-                        FAQ
+                        Tus dudas
                     </div>
                     <h2 className="text-3xl md:text-5xl font-black text-white" style={{ fontFamily: "var(--font-manrope)" }}>
-                        Preguntas <span style={{ color: "#fe9a00" }}>Frecuentes</span>
+                        Lo que todo el mundo <span style={{ color: "#fe9a00" }}>pregunta</span>
                     </h2>
                 </div>
 

@@ -3,33 +3,33 @@ import { Euro, Clock, RefreshCw, Shield, Smartphone, Star } from "lucide-react";
 const benefits = [
     {
         icon: Euro,
-        title: "Precio de estudiante",
-        description: "Webs profesionales desde 200€. Sin costes ocultos. El pago en dos mitades: 50% al firmar, 50% al estar conforme."
+        title: "Precio que tiene sentido",
+        description: "Desde 200€. La mitad al empezar y la otra mitad cuando estés conforme con el resultado. Sin sorpresas, sin costes ocultos."
     },
     {
         icon: Clock,
-        title: "Listo en 7 días",
-        description: "No esperarás meses. En una semana laborable tu web está funcionando y lista para recibir clientes."
+        title: "En una semana",
+        description: "No esperarás meses. En 7 días tienes tu web publicada y lista para que tus clientes te encuentren."
     },
     {
         icon: RefreshCw,
-        title: "Cambios gratis",
-        description: "¿Quieres ajustar algo? Te lo hacemos sin coste adicional. Tu web siempre estará como la quieres."
+        title: "Cambios incluidos",
+        description: "¿Cambias el horario? ¿Añades un servicio? Te lo actualizamos sin coste adicional. Tu web siempre estará al día."
     },
     {
         icon: Smartphone,
-        title: "Perfecta en móvil",
-        description: "Más del 70% de las visitas son desde el móvil. Tus clientes podrán ver tu web perfectamente desde cualquier dispositivo."
+        title: "Se ve bien en el móvil",
+        description: "Más del 70% de tus clientes te van a ver desde el teléfono. Tu web se verá perfecta en cualquier pantalla, siempre."
     },
     {
         icon: Shield,
-        title: "Legal y con factura",
-        description: "Somos autónomos. Emitimos factura y puedes pagar con tarjeta, Bizum o transferencia. Todo en regla."
+        title: "Todo en regla",
+        description: "Somos autónomos. Emitimos factura. Puedes pagarnos con tarjeta, Bizum o transferencia. Sin complicaciones legales."
     },
     {
         icon: Star,
-        title: "100% personalizada",
-        description: "Nada de plantillas genéricas. Programamos tu web desde cero con tus colores, logo y fotos. Única como tu negocio."
+        title: "Solo para tu negocio",
+        description: "Nada de plantillas genéricas que parecen iguales. Programamos tu web desde cero para que refleje exactamente tu negocio."
     }
 ];
 
@@ -47,16 +47,19 @@ export function Benefits() {
                         className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-wider uppercase rounded-full border"
                         style={{ color: "#fe9a00", borderColor: "rgba(254,154,0,0.3)", background: "rgba(254,154,0,0.06)" }}
                     >
-                        ¿Por qué elegirnos?
+                        Sin excusas
                     </div>
                     <h2
                         className="text-3xl md:text-5xl font-black text-white"
                         style={{ fontFamily: "var(--font-manrope)" }}
                     >
-                        Todo lo que necesitas,
+                        Todo claro,
                         <br />
-                        <span style={{ color: "#fe9a00" }}>nada de lo que no</span>
+                        <span style={{ color: "#fe9a00" }}>sin letra pequeña</span>
                     </h2>
+                    <p className="mt-4 text-zinc-400 max-w-lg mx-auto text-sm md:text-base">
+                        Lo que ves es lo que hay. Sin costes inesperados, sin procesos complicados, sin esperas.
+                    </p>
                 </div>
 
                 {/* Grid de beneficios */}
