@@ -28,7 +28,7 @@ export function Footer() {
                         </p>
                         <div className="flex gap-3 mt-2">
                             <a
-                                href="mailto:contacto@nelux.es"
+                                href={`mailto:${['contacto', 'nelux.es'].join('@')}`}
                                 className="w-9 h-9 flex items-center justify-center bg-zinc-900 border border-zinc-800 rounded-xl hover:border-[#fe9a00]/50 hover:text-[#fe9a00] text-zinc-400 transition-all"
                                 aria-label="Email"
                             >

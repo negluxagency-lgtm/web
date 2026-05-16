@@ -5,6 +5,7 @@ import { ScrollReveal } from "@/components/landing/ScrollReveal";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Script from 'next/script';
 import { PwaRegistrar } from '@/components/PwaRegistrar';
+import { localBusinessSchema, faqSchema, websiteSchema } from "@/components/landing/StructuredData";
 
 
 // --- Configuración de Fuentes ---
@@ -44,20 +45,44 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://nelux.es';
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
 
-  // 1. Identidad Principal
+  // 1. Identidad Principal — título con keyword principal + marca
   title: {
-    template: '%s | Nelux Webs',
-    default: 'Nelux Webs - Páginas web para negocios locales de Zaragoza',
+    template: '%s | Nelux Webs — Diseño Web Zaragoza',
+    default: 'Diseño Web Zaragoza desde 200€ | Nelux Webs — Entrega en 7 días',
   },
-  description: 'Hacemos webs modernas y profesionales para negocios locales de Zaragoza desde 200€. Entrega en 7 días, diseño personalizado y soporte incluido. Estudiantes de Ingeniería Informática de la UNIZAR.',
-  keywords: ['páginas web zaragoza', 'diseño web zaragoza', 'web barata zaragoza', 'web negocio local zaragoza', 'crear página web zaragoza', 'desarrollo web estudiantes', 'web profesional zaragoza', 'nelux webs'],
+  description:
+    'Creamos tu página web profesional en Zaragoza desde 200€. Diseño único, SEO local incluido, dominio y hosting gratis el 1º año. Entregamos en 7 días o menos. Sin tecnicismos ni letra pequeña.',
+  keywords: [
+    // Geolócales primarias
+    'diseño web zaragoza',
+    'páginas web zaragoza',
+    'web para negocios zaragoza',
+    'crear web zaragoza',
+    'agencia web zaragoza',
+    'desarrollador web zaragoza',
+    // Long-tail de intención comercial
+    'web barata zaragoza',
+    'página web desde 200 euros zaragoza',
+    'web profesional para autononmos zaragoza',
+    'web para peluquería zaragoza',
+    'web para bar restaurante zaragoza',
+    'web para comercio local zaragoza',
+    // Generales de servicio
+    'hacer web profesional',
+    'web con seo incluido',
+    'web móvil rápida profesional',
+    'landing page negocio local',
+    // Marca
+    'nelux webs',
+    'nelux',
+  ],
 
   // 2. Autoría
   authors: [{ name: 'Nelux Webs', url: BASE_URL }],
   creator: 'Nelux Webs',
   publisher: 'Nelux Webs',
 
-  // 3. Control de Robots (Técnico)
+  // 3. Control de Robots
   robots: {
     index: true,
     follow: true,
@@ -70,25 +95,29 @@ export const metadata: Metadata = {
     },
   },
 
-  // 4. URL Canónica (Evita contenido duplicado)
+  // 4. URL Canónica
   alternates: {
     canonical: '/',
+    languages: {
+      'es-ES': '/',
+    },
   },
 
-  // 5. Open Graph (Facebook, LinkedIn, WhatsApp)
+  // 5. Open Graph
   openGraph: {
-    title: 'Nelux Webs - Páginas web para negocios locales de Zaragoza',
-    description: 'Webs modernas desde 200€ para negocios locales de Zaragoza. Diseño personalizado, entrega en 7 días y soporte continuo.',
+    title: 'Diseño Web en Zaragoza desde 200€ — Entregamos en 7 días | Nelux Webs',
+    description:
+      'Tu negocio necesita una web que genere clientes. Diseño único, SEO local, dominio y hosting incluidos el 1º año. Hablamos directamente contigo, sin intermediarios.',
     url: BASE_URL,
     siteName: 'Nelux Webs',
     locale: 'es_ES',
     type: 'website',
     images: [
       {
-        url: '/default-blog.jpg',
+        url: '/og-nelux.jpg',
         width: 1200,
         height: 630,
-        alt: 'Nelux Webs - Páginas web para negocios locales de Zaragoza',
+        alt: 'Nelux Webs — Diseño Web Profesional en Zaragoza desde 200€',
       },
     ],
   },
@@ -96,34 +125,36 @@ export const metadata: Metadata = {
   // 6. Twitter / X Cards
   twitter: {
     card: 'summary_large_image',
-    title: 'Nelux Webs',
-    description: 'Webs profesionales para negocios locales de Zaragoza desde 200€.',
-    images: ['/default-blog.jpg'],
+    title: 'Web profesional en Zaragoza desde 200€ | Nelux Webs',
+    description:
+      'Diseñamos tu página web en 7 días. SEO local, diseño a medida, soporte incluido. Sin letra pequeña.',
+    images: ['/og-nelux.jpg'],
     creator: '@neluxwebs',
+    site: '@neluxwebs',
   },
 
-  // 7. Verificación (Google Search Console)
+  // 7. Verificación Google Search Console
   verification: {
-    google: 'PENDIENTE_CONFIGURAR', // <--- Pega aquí tu código cuando lo tengas
+    google: 'PENDIENTE_CONFIGURAR',
   },
 
   // 8. Favicon e Iconos
   icons: {
     icon: [
-      { url: "/favicon.ico", rel: "shortcut icon" },
-      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: '/favicon.ico', rel: 'shortcut icon' },
+      { url: '/favicon-96x96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
     ],
     apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180" },
-      { url: "/Logo_ios.png", sizes: "180x180", type: "image/png" },
+      { url: '/apple-touch-icon.png', sizes: '180x180' },
+      { url: '/Logo_ios.png', sizes: '180x180', type: 'image/png' },
     ],
   },
 
   // 9. PWA Manifest
   manifest: '/site.webmanifest',
 
-  // 10. Apple meta para PWA
+  // 10. Apple PWA
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
@@ -141,6 +172,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${outfit.variable} ${greatVibes.variable} ${manrope.variable} ${inter.variable} scroll-smooth`} suppressHydrationWarning>
+      <head>
+        {/* JSON-LD Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      </head>
       <body className="font-sans antialiased bg-black text-zinc-50 overflow-x-hidden">
 
         {/* ScrollReveal */}

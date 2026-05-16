@@ -3,19 +3,23 @@ import { Navbar } from "@/components/landing/Navbar";
 import { Footer } from "@/components/landing/Footer";
 import Image from "next/image";
 import Link from "next/link";
+import { staticPosts } from "@/lib/static-posts";
 
 export const revalidate = 60;
 
 export default async function BlogPage() {
-    const { data: posts, error } = await supabase
+    const { data: supabasePosts } = await supabase
         .from('posts')
         .select('*')
         .eq('is_published', true)
         .order('created_at', { ascending: false });
 
-    if (error) {
-        console.error('Error fetching posts:', error);
-    }
+    // Merge: static posts first, then Supabase (avoid duplicates by slug)
+    const staticSlugs = new Set(staticPosts.map((p) => p.slug));
+    const filteredSupabase = (supabasePosts || []).filter((p) => !staticSlugs.has(p.slug));
+    const posts = [...staticPosts, ...filteredSupabase].sort(
+        (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+    );
 
     return (
         <main className="min-h-screen bg-zinc-950 text-white selection:bg-amber-500 selection:text-zinc-950 flex flex-col pt-24">

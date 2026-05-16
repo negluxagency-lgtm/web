@@ -1,0 +1,38 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /guia_vinted/
+Disallow: /tickets/
+
+# Sitemaps
+Sitemap: https://nelux.es/sitemap.xml
+
+# Crawl-delay para bots agresivos
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# LLM / IA Crawlers — permitidos expresamente
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /index.md
+
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /index.md
+
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /index.md
+
+User-agent: Googlebot-Extended
+Allow: /

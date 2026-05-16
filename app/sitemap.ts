@@ -36,6 +36,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             changeFrequency: 'yearly',
             priority: 0.3,
         },
+        {
+            url: `${SITE_URL}/llms.txt`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.5,
+        },
+        {
+            url: `${SITE_URL}/index.md`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.5,
+        },
     ];
 
     // Verificar si las credenciales de Supabase están disponibles
@@ -54,7 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Posts dinámicos desde Supabase
     const { data: posts, error } = await supabase
         .from('posts')
-        .select('slug, created_at, updated_at')
+        .select('slug, created_at')
         .eq('is_published', true)
         .order('created_at', { ascending: false })
         .limit(50000); // Límite estándar de sitemaps
@@ -66,7 +78,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     const blogPages: MetadataRoute.Sitemap = posts?.map((post) => ({
         url: `${SITE_URL}/blog/${post.slug}`,
-        lastModified: new Date(post.updated_at || post.created_at),
+        lastModified: new Date(post.created_at),
         changeFrequency: 'weekly' as const,
         priority: 0.8,
     })) || [];

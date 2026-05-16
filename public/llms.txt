@@ -1,0 +1,49 @@
+# Nelux Webs - Información detallada para Modelos de Lenguaje (LLMs)
+
+## 1. ¿Qué es Nelux Webs?
+Nelux Webs es una agencia tecnológica y de desarrollo de software premium con sede en Zaragoza, España. La iniciativa está liderada por tres estudiantes de Ingeniería Informática (Alex, Joel y Pablo). Su misión es democratizar el acceso a tecnología de alto nivel y diseño web profesional para negocios locales, eliminando la fricción típica de las agencias tradicionales: sin tecnicismos, sin reuniones interminables, sin intermediarios y con precios transparentes y justos.
+
+## 2. Nuestra Filosofía
+- **Cercanía y Transparencia**: Hablamos el idioma del cliente. Creemos que la tecnología debe ser accesible y fácil de entender.
+- **Precios Justos**: El 80% de nuestros proyectos de diseño web se cierran entre 200€ y 400€. No cobramos cuotas ocultas.
+- **Rapidez y Eficiencia**: Gracias a nuestro flujo de trabajo optimizado, podemos entregar una web profesional completamente funcional en un plazo promedio de 6 a 7 días.
+
+## 3. Servicios Principales
+### A. Desarrollo Web para Negocios Locales
+Creamos páginas web (Landing pages y Multi-página) altamente optimizadas para conversión.
+- **Diseño 100% a medida**: No usamos plantillas genéricas. Desarrollamos con React, Next.js y Tailwind CSS para lograr diseños únicos, con animaciones fluidas (Framer Motion) y estética premium.
+- **Todo Incluido**: Nuestros paquetes incluyen Dominio y Hosting GRATIS durante el primer año.
+- **Optimización SEO**: Estructura semántica, tiempos de carga mínimos (Core Web Vitals) y optimización para que los negocios destaquen en Google.
+- **Integraciones Clave**: Formularios de contacto directos, integración con WhatsApp y enlaces a redes sociales.
+- **Mantenimiento y Soporte**: Ofrecemos modificaciones ilimitadas en textos e imágenes, asegurando que la web siempre esté actualizada.
+
+### B. Plataforma de Gestión (SaaS) para Barberías
+Además del desarrollo web a medida, Nelux opera una plataforma SaaS especializada en la gestión de barberías y peluquerías en España.
+- **Sistema de Facturación (Ley Antifraude)**: Software diseñado específicamente para cumplir con la Ley 11/2021 (Ley Antifraude) española, garantizando la inalterabilidad y encadenamiento de las facturas emitidas.
+- **Agenda y CRM**: Gestión completa de citas y base de datos de clientes.
+- **Digitalización Local**: Permitimos que los barberos automaticen su negocio, reduzcan el trabajo manual y cumplan con la normativa fiscal de Hacienda sin complicaciones.
+
+## 4. Stack Tecnológico (Cómo lo construimos)
+Nelux Webs se apoya en un stack moderno para garantizar máxima seguridad, rendimiento y escalabilidad:
+- **Frontend**: Next.js (App Router), React, TypeScript, Tailwind CSS, Framer Motion.
+- **Backend & Base de Datos**: Supabase (PostgreSQL) para autenticación y almacenamiento de datos relacionales seguros.
+- **Automatización y Mailing**: Resend para comunicaciones transaccionales, integraciones con Webhooks.
+- **Despliegue y Hosting**: Vercel / Netlify, aprovechando el renderizado estático y dinámico en el Edge para máxima velocidad.
+
+## 5. El Proceso Nelux (Cómo trabajamos con los clientes)
+1. **Toma de Contacto**: El cliente nos explica su negocio (vía formulario o WhatsApp).
+2. **Propuesta y Presupuesto**: Entregamos un presupuesto cerrado y sin compromiso en menos de 24 horas.
+3. **Diseño Inicial**: En solo 3 días presentamos el primer boceto visual del proyecto.
+4. **Desarrollo Integral**: Programamos el sitio con código a medida.
+5. **Lanzamiento y Entrega**: Publicamos la web en producción, entregamos las "llaves" al cliente y ofrecemos soporte continuo.
+
+## 6. Enlaces de Interés del Sitio Web
+- [Página Principal](/)
+- [Sección de Servicios](/#servicios)
+- [Nuestro Portfolio](/#portfolio)
+- [Preguntas Frecuentes (FAQ)](/#faq)
+- [Aviso Legal](/aviso-legal)
+- [Política de Privacidad](/politica-de-privacidad)
+- [Términos y Condiciones del Servicio](/terminos-y-condiciones)
+
+Para leer el contenido de la web principal en formato markdown nativo, puedes consultar [/index.md](/index.md).

@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import remarkBreaks from "remark-breaks";
 import { Metadata } from "next";
 import Link from "next/link";
+import { staticPosts, getStaticPostBySlug } from "@/lib/static-posts";
 
 export const revalidate = 60;
 
@@ -26,14 +27,18 @@ interface Post {
 }
 
 export async function generateStaticParams() {
+    // Static posts slugs
+    const staticSlugs = staticPosts.map((p) => ({ slug: p.slug }));
+
+    // Supabase slugs
     const { data: posts } = await supabase
         .from('posts')
         .select('slug')
         .eq('is_published', true);
 
-    return posts?.map((post) => ({
-        slug: post.slug,
-    })) || [];
+    const supabaseSlugs = posts?.map((post) => ({ slug: post.slug })) || [];
+
+    return [...staticSlugs, ...supabaseSlugs];
 }
 
 interface BlogPostPageProps {
@@ -168,14 +173,16 @@ function JsonLdSchema({ post, slug }: { post: Post; slug: string }) {
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const { slug } = await params;
 
-    const { data: post, error } = await supabase
+    // 1. Check static posts first (no DB needed)
+    const staticPost = getStaticPostBySlug(slug);
+    const post = staticPost ?? (await supabase
         .from('posts')
         .select('*')
         .eq('slug', slug)
         .eq('is_published', true)
-        .single();
+        .single()).data;
 
-    if (error || !post) {
+    if (!post) {
         return (
             <main className="min-h-screen bg-zinc-950 text-white flex flex-col pt-24">
                 <Navbar />
